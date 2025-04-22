@@ -1,0 +1,51 @@
+.text-monospace {
+	font-family: monospace;
+}
+
+.button-link {
+	display: inline-block;
+	width: 128px;
+}
+
+.tag {
+	display: inline-block;
+	min-width: 128px;
+	vertical-align: top;
+	border: 1px solid transparent;
+
+	font-family: monospace;
+	text-transform: uppercase;
+
+	filter: brightness(.9);
+}
+
+.tag.static {
+	filter: brightness(1) !important;
+}
+
+.tag.static:hover {
+	filter: brightness(1) !important;
+}
+
+.tag:hover {
+	cursor: help;
+	filter: brightness(1.2);
+	border: 1px solid black;
+}
+
+.improved {
+	filter: saturate(2) brightness(1);
+}
+
+.multiple {
+	display: inline-block;
+	width: 128px;
+
+	vertical-align: top;
+}
+
+.panel {
+	-webkit-box-shadow: 4px 10px 25px -11px rgba(0,0,0,0.75);
+	-moz-box-shadow: 4px 10px 25px -11px rgba(0,0,0,0.75);
+	box-shadow: 4px 10px 25px -11px rgba(0,0,0,0.75);
+}

@@ -1,0 +1,101 @@
+#glasspane {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: #99999933;
+	z-index: 10000;
+}
+
+html.shiny-busy {
+	#Unused
+	#overflow: hidden;
+}
+
+.tag {
+	display: inline-block;
+	min-width: 128px;
+}
+
+.main-container {
+	margin-top: .2em;
+}
+
+.custom.panel {
+	margin-bottom: 1em;
+}
+
+.custom.panel-heading h2 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.custom.panel-heading h3 {
+	margin-top: 12px;
+	margin-bottom: 0px;
+}
+
+.tab-content {
+	padding: .5em;
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.shiny-datatable-output {
+	padding: .5em;
+
+	overflow-x: auto;
+	white-space: nowrap !important;
+
+	text-align: right;
+}
+
+.shiny-datatable-output thead th {
+	text-align: center
+}
+
+.dataTable td {
+	white-space: nowrap;
+}
+
+.loading {
+	width: 320px;
+
+	color: #000000;
+	background-color: white;
+
+	font-weight: bold;
+	font-size: 100%;
+
+	padding: 1em;
+	margin-left: calc(50vw - 160px);
+	margin-top: calc(40vh);
+
+	text-align: center;
+
+	border-radius: 1em;
+	border: 2px solid gray;
+
+	-webkit-box-shadow: -1px 10px 25px -11px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 10px 25px -11px rgba(0,0,0,0.75);
+	box-shadow: -1px 10px 25px -11px rgba(0,0,0,0.75);
+ }
+
+.label { vertical-align: 4px; }
+
+.panel {
+	-webkit-box-shadow: -1px 10px 25px -11px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 10px 25px -11px rgba(0,0,0,0.75);
+	box-shadow: -1px 10px 25px -11px rgba(0,0,0,0.75);
+}
+
+a.header-link {
+  color: inherit;
+}
+
+a.header-link:hover {
+  color: inherit;
+}
+}
