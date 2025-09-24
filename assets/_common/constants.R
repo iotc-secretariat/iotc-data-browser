@@ -72,8 +72,8 @@ SIZE_CATEGORIES   = append(QUARTER_CATEGORY, SIZE_CATEGORIES)
 
 SIZE_STD_CATEGORIES = SIZE_CATEGORIES[-which(names(SIZE_CATEGORIES) == "Raising type")]
 
-initialize_all_species_colors()
-initialize_all_gears_colors()
+initialize_all_species_colors(connection = NULL)
+initialize_all_gears_colors(connection = NULL)
 
 CUSTOM_COLORS = color_table(unique_colors(64))
 

@@ -1,12 +1,12 @@
 SD_NUM_COLS = 4
 SD_ROW_YEAR_HEIGHT = 20
 
-IOTC_LOGO = png::readPNG("../../_resources/assets/iotc-logo.png")
+IOTC_LOGO = png::readPNG("./assets/_resources/assets/iotc-logo.png")
 IOTC_LOGO_RASTER = grid::rasterGrob(IOTC_LOGO, interpolate = TRUE,
                                     #width = unit(75, "points"),
-                                    width = unit(0.07, "npc"),
+                                    width = grid::unit(0.07, "npc"),
                                     #x = unit(.09, "npc"), y = unit(.98, "npc"),
-                                    x = unit(0.08, "npc"), y = unit(.98, "npc"),
+                                    x = grid::unit(0.08, "npc"), y = grid::unit(.98, "npc"),
                                     hjust = 1, vjust = 1)
 
 capitalize = function(string) {
@@ -106,7 +106,6 @@ prepare_csv_file_with_fixed_unit = function(input, dataset = "NC_RAW", units, un
 
 watermark = function(add, plot) {
   if(add) return(plot + annotation_custom(IOTC_LOGO_RASTER))
-
   return(plot)
 }
 

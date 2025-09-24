@@ -1,6 +1,6 @@
 print("LOADING common.R")
 
-db_debug_connections(TRUE)
+#db_debug_connections(TRUE)
 
 bar_chart = function(value, time, max_categories, category, use_category_colors, current_data, scale, y_axis_label) {
   custom_colors = NA
@@ -216,6 +216,8 @@ common_prepare_handlers = function(current_data, current_data_table, input, outp
 
   # Reactive plot functions
 
+  print(configuration)
+  print(names(input))
   plotBarChart         = reactive_plotBarChart        (current_data, input, configuration)
   plotBarChartExpanded = reactive_plotBarChartExpanded(current_data, input, configuration)
   plotLineChart        = reactive_plotLineChart       (current_data, input, configuration)

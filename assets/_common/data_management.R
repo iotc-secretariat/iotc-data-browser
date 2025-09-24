@@ -11,7 +11,7 @@ input_is_available = function(input_field) {
 }
 
 initialize_reference_data = function(data) {
-  fleets = all_fleets()[order(SORT)]
+  fleets = iotc.data.reference.codelists::LEGACY_FLEETS_IOTDB[order(SORT)]
   FLEETS  = setNames(as.character(fleets$CODE), paste(fleets$CODE, "-", fleets$NAME_EN))
 
   fishery_type_codes = unique(data$FISHERY_TYPE_CODE)
