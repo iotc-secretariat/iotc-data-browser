@@ -1,8 +1,8 @@
 nc_raw_ui <- function(id, source_dataset, ref){
   tagList(
-    tags$head(includeHTML(("./assets/_resources/google-analytics.html"))),
-    theme = "./assets/_resources/css/button.css",
-    includeCSS("./assets/_resources/css/common.css"),
+    tags$head(includeHTML(("www/google-analytics.html"))),
+    includeCSS("www/css/common.css"),
+    includeCSS("www/css/button.css"),
     title = UI_window_title(source_dataset, iotc.data.reference.datasets.NC::METADATA$RAW$LAST_UPDATE, ref),
     UI_main(
       source_dataset, iotc.data.reference.datasets.NC::METADATA$RAW$LAST_UPDATE, REF, "primary",
@@ -19,7 +19,7 @@ nc_raw_ui <- function(id, source_dataset, ref){
           )
         )
       ),
-      "//data.iotc.org/browser/NC/RAW"
+      "#NC-RAW"
     )
   )
 }

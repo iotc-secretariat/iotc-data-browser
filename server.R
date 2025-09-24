@@ -5,8 +5,8 @@ server = function(input, output, session) {
   
   homeUI <- function(){
     tagList(
-      tags$head(includeHTML(("./assets/_resources/google-analytics.html"))),
-      includeCSS("./assets/_resources/css/home.css"),
+      tags$head(includeHTML(("www/google-analytics.html"))),
+      includeCSS("www/css/home.css"),
       titlePanel(
         windowTitle = "IOTC data browser - explore the content of IOTC datasets",
         title = ""
@@ -216,6 +216,9 @@ server = function(input, output, session) {
       },
       "nc-raw" = {
         INFO("Load NC-RAW module")
+        source("./modules/NC/NC_configuration.R")
+        source("./modules/NC/NC_initialization.R")
+        source("./modules/NC/NC_extras.R")
         SOURCE_DATASET = "raw nominal catches"
         REF = initialize_NC_reference_data(iotc.data.reference.datasets.NC::RAW)
         nc_raw_server("nc-raw", SOURCE_DATASET, REF, input, output, session)
@@ -223,6 +226,9 @@ server = function(input, output, session) {
       },
       "nc-sci" = {
         INFO("Load NC-SCI module")
+        source("./modules/NC/NC_configuration.R")
+        source("./modules/NC/NC_initialization.R")
+        source("./modules/NC/NC_extras.R")
         SOURCE_DATASET = "best scientific estimates of nominal catches"
         REF = initialize_NC_reference_data(iotc.data.reference.datasets.NC::SCI)
         nc_sci_server("nc-sci", SOURCE_DATASET, REF, input, output, session)
@@ -230,25 +236,52 @@ server = function(input, output, session) {
       },
       "ce-ef" = {
         DEBUG("Should load CE-EF module")
+        #TODO
       },
       "ce-ca" = {
         DEBUG("Should load CE-CA module")
+        #TODO
+      },
+      "ca-raised" = {
+        DEBUG("Should load CA-RAISED module")
+        #TODO
       },
       "sf-raw" = {
-        DEBUG("Should load SF-RAW module")
+        INFO("Load SF-RAW module")
+        source("./modules/SF/SF_configuration.R")
+        source("./modules/SF/SF_initialization.R")
+        source("./modules/SF/SF_extras.R")
       },
       "sf-std" = {
-        DEBUG("Should load SF-STD module")
+        INFO("Load load SF-STD module")
+        source("./modules/SF/SF_configuration.R")
+        source("./modules/SF/SF_initialization.R")
+        source("./modules/SF/SF_extras.R")
       }
     )
   })
   
   #events to update the model/page
-  observeEvent(input$module_nc_raw,{ model$page <- "nc-raw" }, ignoreInit = T)
-  observeEvent(input$module_nc_sci,{ model$page <- "nc-sci" }, ignoreInit = T)
+  observeEvent(input$home,{ model$page <- "home"; updateURL(session, "#") }, ignoreInit = T)
+  observeEvent(input$module_nc_raw,{ model$page <- "nc-raw"; updateURL(session, "#NC-RAW") }, ignoreInit = T)
+  observeEvent(input$module_nc_sci,{ model$page <- "nc-sci"; updateURL(session, "#NC-SCI") }, ignoreInit = T)
   observeEvent(input$module_ce_ef,{ model$page <- "ce-ef" }, ignoreInit = T)
   observeEvent(input$module_ce_ca,{ model$page <- "ce-ca" }, ignoreInit = T)
-  observeEvent(input$module_sf_raw,{model$age <- "sf-raw"}, ignoreInit = T)
-  observeEvent(input$module_sf_std,{model$age <- "sf-std"}, ignoreInit = T)
+  observeEvent(input$module_ca_raised,{ model$page <- "ca-raised" }, ignoreInit = T)
+  observeEvent(input$module_sf_raw,{model$page <- "sf-raw"}, ignoreInit = T)
+  observeEvent(input$module_sf_std,{model$page <- "sf-std"}, ignoreInit = T)
+  
+  # #calipseo-shiny URL decoding mechanism
+  observe({
+    hash = session$clientData$url_hash
+    page = NULL
+    print(hash)
+    if(hash %in% c("#","")){
+      page = "home"
+    }else{
+      page = tolower(substr(hash, 2, nchar(hash)))
+    }
+    model$page = page
+  })
 
 }

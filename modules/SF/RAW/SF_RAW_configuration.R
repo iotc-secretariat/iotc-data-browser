@@ -2,7 +2,7 @@
 
 print("LOADING SF_RAW_configuration.R")
 
-SF_RAW_PREFIX = paste0(SF_COMMON_PREFIX, "_RAW")
+SF_RAW_PREFIX = paste0(SFscripts_PREFIX, "_RAW")
 
 SOURCE_DATASET = "raw georeferenced size-frequencies"
 

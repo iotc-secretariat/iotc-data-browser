@@ -1,7 +1,7 @@
 SD_NUM_COLS = 4
 SD_ROW_YEAR_HEIGHT = 20
 
-IOTC_LOGO = png::readPNG("./assets/_resources/assets/iotc-logo.png")
+IOTC_LOGO = png::readPNG("www/iotc-logo.png")
 IOTC_LOGO_RASTER = grid::rasterGrob(IOTC_LOGO, interpolate = TRUE,
                                     #width = unit(75, "points"),
                                     width = grid::unit(0.07, "npc"),
@@ -177,8 +177,8 @@ UI_heading = function(source_dataset, last_update, references, external_URL) {
       column(
         width = 9,
         tags$h2(
-          tags$a(href = "/browser/home", class = "btn btn-link", title = "Back to data browser homepage",
-            tags$img(src="../../_resources/assets/iotc-logo.png", height="32px")
+          actionLink(inputId = 'home', class = "btn btn-link", title = "Back to data browser homepage",
+            label = tags$img(src="iotc-logo.png", height="32px")
           ),
           tags$span(class="far fa-caret-square-left", style="vertical-align: text-bottom;", " "),
           tags$b(tags$u(capitalize(source_dataset))),

@@ -2,7 +2,7 @@
 
 print("LOADING SF_STD_configuration.R")
 
-SF_STD_PREFIX = paste0(SF_COMMON_PREFIX, "_STD")
+SF_STD_PREFIX = paste0(SFscripts_PREFIX, "_STD")
 
 SOURCE_DATASET = "standardized georeferenced size-frequencies"
 

@@ -23,7 +23,11 @@ require(iotc.data.reference.datasets.SF.std)
 iotc.core.db.connections::setDefaultDBIHandler( function(){ return(NULL)} )
 
 #assets
-common_assets <- list.files("assets/_common", pattern = ".R", full.names = T)
+common_assets <- list.files("assets/scripts", pattern = ".R", full.names = T)
 for(common_asset in common_assets) source(common_asset)
-nc_assets <- list.files("modules/NC", pattern = ".R", full.names = T, recursive = T)
-for(nc_asset in nc_assets) source(nc_asset)
+
+#thematic modules
+source("./modules/NC/RAW/server.R")
+source("./modules/NC/RAW/ui.R")
+source("./modules/NC/SCI/server.R")
+source("./modules/NC/SCI/ui.R")

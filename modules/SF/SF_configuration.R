@@ -2,7 +2,7 @@
 
 print("LOADING SF_configuration.R")
 
-SF_COMMON_PREFIX = "SF"
+SFscripts_PREFIX = "SF"
 
 SOURCE_DATASET = "< to be specified >"
 

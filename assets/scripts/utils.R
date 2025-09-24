@@ -13,6 +13,13 @@ DEBUG_MODULE_PROCESSING_TIME <- function(module, start, end){
   DEBUG("\u23F3 %s module loaded in %s %s", module, as(module_time, "numeric"), attr(module_time, "units"))
 }
 
+#updateURL
+updateURL <- function(session, path = ""){
+  updateQueryString(
+    queryString = path,
+    mode = "push", session
+  )
+}
 
 
 glyph_ = function(icon) {

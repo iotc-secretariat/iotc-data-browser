@@ -20,12 +20,12 @@ load("./METADATA.rda", envir = CE_RAW_ENV)
 
 DATA = CE_RAW_ENV$RAW.EF
 
-source("../../_common/constants.R")
-source("../../_common/data_management.R")
-source("../../_common/UI_management.R")
+source("../../scripts/constants.R")
+source("../../scripts/data_management.R")
+source("../../scripts/UI_management.R")
 
-source("../../_common/common_all.R")
-source("../../_common/common_georeferenced.R")
+source("../../scripts/common_all.R")
+source("../../scripts/common_georeferenced.R")
 
 source("EF_initialization.R")
 

@@ -49,16 +49,16 @@ DATA_TABLE = data_SF_STD_table
 
 DEFAULT_MEASURE_TYPE = "FL"
 
-source("../../_common/constants.R")
-source("../../_common/data_management.R")
-source("../../_common/UI_management.R")
+source("../../scripts/constants.R")
+source("../../scripts/data_management.R")
+source("../../scripts/UI_management.R")
 
 source("../SF_configuration.R")
 source("../SF_initialization.R")
 source("../SF_extras.R")
 
-source("../../_common/common_all.R")
-source("../../_common/common_georeferenced.R")
+source("../../scripts/common_all.R")
+source("../../scripts/common_georeferenced.R")
 
 source("./SF_STD_configuration.R")
 source("./SF_STD_extras.R")

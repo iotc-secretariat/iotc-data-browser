@@ -2,7 +2,7 @@
 
 print("LOADING NC_configuration.R")
 
-NC_COMMON_PREFIX = "NC"
+NCscripts_PREFIX = "NC"
 
 SOURCE_DATASET = "< to be specified >"
 

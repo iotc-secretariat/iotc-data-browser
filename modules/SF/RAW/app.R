@@ -47,16 +47,16 @@ data_SF_RAW       = data_SF_RAW_table[, .(FISH_COUNT = sum(FISH_COUNT)), keyby =
 DATA       = data_SF_RAW
 DATA_TABLE = data_SF_RAW_table
 
-source("../../_common/constants.R")
-source("../../_common/data_management.R")
-source("../../_common/UI_management.R")
+source("../../scripts/constants.R")
+source("../../scripts/data_management.R")
+source("../../scripts/UI_management.R")
 
 source("../SF_configuration.R")
 source("../SF_initialization.R")
 source("../SF_extras.R")
 
-source("../../_common/common_all.R")
-source("../../_common/common_georeferenced.R")
+source("../../scripts/common_all.R")
+source("../../scripts/common_georeferenced.R")
 
 source("./SF_RAW_configuration.R")
 
