@@ -271,7 +271,7 @@ server = function(input, output, session) {
   observeEvent(input$module_sf_raw,{model$page <- "sf-raw"}, ignoreInit = T)
   observeEvent(input$module_sf_std,{model$page <- "sf-std"}, ignoreInit = T)
   
-  # #calipseo-shiny URL decoding mechanism
+  #mechanism to load a module page from the URL
   observe({
     hash = session$clientData$url_hash
     page = NULL
