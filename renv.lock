@@ -37,6 +37,17 @@
       ],
       "Hash": "0d3ab8abbb0c3e3daa47d4dc8e17bbae"
     },
+    "KernSmooth": {
+      "Package": "KernSmooth",
+      "Version": "2.23-20",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "stats"
+      ],
+      "Hash": "8dcfa99b14c296bc9f1fd64d52fd3ce7"
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-58.4",
@@ -212,6 +223,35 @@
       ],
       "Hash": "cd9a672193789068eb5a2aad65a0dedf"
     },
+    "class": {
+      "Package": "class",
+      "Version": "7.3-21",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "MASS",
+        "R",
+        "stats",
+        "utils"
+      ],
+      "Hash": "8ae0d4328e2eb3a582dfd5391a3663b7"
+    },
+    "classInt": {
+      "Package": "classInt",
+      "Version": "0.4-11",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "KernSmooth",
+        "R",
+        "class",
+        "e1071",
+        "grDevices",
+        "graphics",
+        "stats"
+      ],
+      "Hash": "f2af70314a63d7f025ae668f08bd933a"
+    },
     "cli": {
       "Package": "cli",
       "Version": "3.6.2",
@@ -333,6 +373,22 @@
         "vctrs"
       ],
       "Hash": "fedd9d00c2944ff00a0e2696ccf048ec"
+    },
+    "e1071": {
+      "Package": "e1071",
+      "Version": "1.7-16",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "class",
+        "grDevices",
+        "graphics",
+        "methods",
+        "proxy",
+        "stats",
+        "utils"
+      ],
+      "Hash": "27a09ca40266a1066d62ef5402dd51d6"
     },
     "evaluate": {
       "Package": "evaluate",
@@ -688,19 +744,19 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-lib-base-common-data",
       "RemoteUsername": "iotc-secretariat",
-      "RemoteSha": "c9b5c8e3befb85f7b911136b96b03b5207e7e962",
+      "RemoteSha": "e12bfb27033bee28420780ed9e90554fc256fd94",
       "Requirements": [
         "DBI",
         "data.table",
         "iotc.core.db.data",
-        "iotc.core.gis.cwp.IO.standalone",
+        "iotc.core.gis.cwp.IO",
         "iotc.core.utils.misc",
         "iotc.data.reference.codelists",
         "openxlsx",
         "stringi",
         "stringr"
       ],
-      "Hash": "71f84ceabe6b70e7fc4e003aba451b22"
+      "Hash": "95d39886fb0477ff7fd796010d5ba195"
     },
     "iotc.base.common.plots": {
       "Package": "iotc.base.common.plots",
@@ -710,7 +766,7 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-lib-base-common-plots",
       "RemoteUsername": "iotc-secretariat",
-      "RemoteSha": "1a1f0c5b4bc981062248e35c1f8d4786e6d08d34",
+      "RemoteSha": "a93dbc759a9885d27c4541b8ac7b4907c58098c7",
       "Requirements": [
         "data.table",
         "dplyr",
@@ -719,13 +775,13 @@
         "ggridges",
         "iotc.base.common.data",
         "iotc.core.gis.cwp",
-        "iotc.core.gis.maps.standalone",
+        "iotc.core.gis.maps",
         "iotc.core.utils.aes",
         "iotc.data.reference.codelists",
         "scatterpie",
         "treemapify"
       ],
-      "Hash": "6e3c041c57854bd546f84eac91529e41"
+      "Hash": "335f102a2e8eea9c8cd98b1abc8e5e58"
     },
     "iotc.core.db.connections": {
       "Package": "iotc.core.db.connections",
@@ -773,52 +829,62 @@
       ],
       "Hash": "5eae50df25372e145a4c6c1cb58f2090"
     },
-    "iotc.core.gis.cwp.IO.standalone": {
-      "Package": "iotc.core.gis.cwp.IO.standalone",
+    "iotc.core.gis.cwp.IO": {
+      "Package": "iotc.core.gis.cwp.IO",
       "Version": "0.2.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-lib-core-gis-cwp-io",
       "RemoteUsername": "iotc-secretariat",
-      "RemoteSha": "83908398d160ab525b4459f8e557ab2ef5ed3836",
+      "RemoteRef": "0.2.1-standalone",
+      "RemoteSha": "50991992078151350c194af556a9ad29725ed4dd",
       "Requirements": [
         "R",
         "data.table",
         "iotc.core.gis.cwp"
       ],
-      "Hash": "c2df299ad8734386f210152d918aad8a"
+      "Hash": "fdfc239702c0159649c8bd48f635f9dd"
     },
-    "iotc.core.gis.maps.standalone": {
-      "Package": "iotc.core.gis.maps.standalone",
+    "iotc.core.gis.maps": {
+      "Package": "iotc.core.gis.maps",
       "Version": "0.2.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-lib-core-gis-maps",
       "RemoteUsername": "iotc-secretariat",
-      "RemoteSha": "b8c289bddb84bef7e7ca7dd680f40788615e832c",
+      "RemoteRef": "0.2.1-standalone",
+      "RemoteSha": "24ff5e712ec3bf7845092d1e6317e5aefd3bc4a2",
       "Requirements": [
         "colorspace",
         "ggplot2",
         "ggthemes",
         "graphics",
-        "iotc.core.gis.wkt.standalone",
+        "iotc.core.gis.wkt",
         "mapdata",
         "mapplots",
         "maps"
       ],
-      "Hash": "e77c8894a7983f8fbe76791b3ce87beb"
+      "Hash": "54e0bd36bf0c6d9a8b190b4a0a111634"
     },
-    "iotc.core.gis.wkt.standalone": {
-      "Package": "iotc.core.gis.wkt.standalone",
+    "iotc.core.gis.wkt": {
+      "Package": "iotc.core.gis.wkt",
       "Version": "0.2.1",
-      "Source": "unknown",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "iotc-lib-core-gis-cwp-wkt",
+      "RemoteUsername": "iotc-secretariat",
+      "RemoteRef": "0.2.1-standalone",
+      "RemoteSha": "a238276fb119081580248809aa2298b5ea77c8d0",
       "Requirements": [
         "R",
-        "iotc.core.utils.misc"
+        "data.table",
+        "iotc.core.utils.misc",
+        "sf"
       ],
-      "Hash": "88ee19b1b32a529513c8df02c977f46b"
+      "Hash": "14c53574d6f3ac98cf5db2eef22d13de"
     },
     "iotc.core.utils.aes": {
       "Package": "iotc.core.utils.aes",
@@ -866,12 +932,17 @@
     "iotc.data.reference.codelists": {
       "Package": "iotc.data.reference.codelists",
       "Version": "1.0.0",
-      "Source": "unknown",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "iotc-data-reference-codelists",
+      "RemoteUsername": "iotc-secretariat",
+      "RemoteSha": "be477a2799875cc603003bc4d9aa59fe684740f8",
       "Requirements": [
         "R",
         "data.table"
       ],
-      "Hash": "5674d861264c0cd40cfe42f515e4bc98"
+      "Hash": "320ef209b19bb6bfc0225ad884af0265"
     },
     "iotc.data.reference.datasets.CE": {
       "Package": "iotc.data.reference.datasets.CE",
@@ -1294,6 +1365,18 @@
       ],
       "Hash": "c84fd4f75ea1f5434735e08b7f50fbca"
     },
+    "proxy": {
+      "Package": "proxy",
+      "Version": "0.4-27",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "stats",
+        "utils"
+      ],
+      "Hash": "e0ef355c12942cf7a6b91a6cfaea8b3e"
+    },
     "purrr": {
       "Package": "purrr",
       "Version": "1.0.2",
@@ -1370,6 +1453,18 @@
       "Repository": "CRAN",
       "Hash": "96710351d642b70e8f02ddeb237c46a7"
     },
+    "s2": {
+      "Package": "s2",
+      "Version": "1.1.9",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "wk"
+      ],
+      "Hash": "4e664a5d610d58f27ec196e96cdb7f6f"
+    },
     "sass": {
       "Package": "sass",
       "Version": "0.4.9",
@@ -1421,6 +1516,29 @@
         "yulab.utils"
       ],
       "Hash": "cdcdfb3c27a81d3f1f12a70a8f6bfa5c"
+    },
+    "sf": {
+      "Package": "sf",
+      "Version": "1.0-21",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "DBI",
+        "R",
+        "Rcpp",
+        "classInt",
+        "grDevices",
+        "graphics",
+        "grid",
+        "magrittr",
+        "methods",
+        "s2",
+        "stats",
+        "tools",
+        "units",
+        "utils"
+      ],
+      "Hash": "14a8dae2a678fa953907893a9df561c0"
     },
     "shades": {
       "Package": "shades",
@@ -1646,6 +1764,17 @@
       ],
       "Hash": "82fac2b73e6a1f3874fc000aaf96d8bc"
     },
+    "units": {
+      "Package": "units",
+      "Version": "0.8-7",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "Rcpp"
+      ],
+      "Hash": "5d0b024902d5da97a2b64f002e92a869"
+    },
     "utf8": {
       "Package": "utf8",
       "Version": "1.2.4",
@@ -1691,6 +1820,16 @@
         "graphics"
       ],
       "Hash": "cc2d62c76458d425210d1eb1478b30b4"
+    },
+    "wk": {
+      "Package": "wk",
+      "Version": "0.9.4",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "37be35d733130f1de1ef51672cf7cdc0"
     },
     "writexl": {
       "Package": "writexl",

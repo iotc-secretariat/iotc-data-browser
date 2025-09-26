@@ -235,8 +235,14 @@ server = function(input, output, session) {
         nc_sci_ui("nc-sci", SOURCE_DATASET, REF)
       },
       "ce-ef" = {
-        DEBUG("Should load CE-EF module")
-        #TODO
+        INFO("Load CE-EF module")
+        source("./modules/CE/EF/EF_configuration.R")
+        source("./modules/CE/EF/EF_initialization.R")
+        SOURCE_DATASET = "raw georeferenced efforts"
+        REF = initialize_EF_reference_data(iotc.data.reference.datasets.CE::RAW.EF)
+        DATA = update_data(REF, iotc.data.reference.datasets.CE::RAW.EF)
+        ce_ef_server("ce-ef", SOURCE_DATASET, DATA, REF, input, output, session)
+        ce_ef_ui("ce-ef", SOURCE_DATASET, REF)
       },
       "ce-ca" = {
         DEBUG("Should load CE-CA module")

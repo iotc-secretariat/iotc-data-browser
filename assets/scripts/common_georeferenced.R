@@ -21,7 +21,7 @@ spatially_disaggregate = function(source_data, target_grid_type_code) {
   return (data_dis)
 }
 
-pie_geo = function(value, max_categories, category, use_category_colors, resolution, quadrant, pie_size, opaque_colors, use_exact_center, show_IO, show_HS, current_data, unit_label, legend_title) {
+pie_geo = function(value, max_categories, category, use_category_colors, resolution, quadrant, pie_size, opaque_colors, use_exact_center, show_IO_areas, show_HS, current_data, unit_label, legend_title) {
   if(!category %in% colnames(current_data)) stop(paste0("Cannot categorize this dataset by '", category, "'"))
   
   custom_colors = NA
@@ -41,7 +41,7 @@ pie_geo = function(value, max_categories, category, use_category_colors, resolut
       use_centroid = !use_exact_center,
       max_categories = max_categories,
       unit = unit_label,
-      show_IO = show_IO,
+      show_IO_areas = show_IO_areas,
       show_high_seas = show_HS,
       xlim = limits$xlim,
       ylim = limits$ylim,

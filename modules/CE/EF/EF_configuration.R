@@ -1,10 +1,3 @@
-### EF configuration ###
-
-print("LOADING EF_configuration.R")
-
-EF_RAW_PREFIX  = "EF_RAW"
-
-SOURCE_DATASET = "raw georeferenced efforts"
 
 VALUE_COLUMN           = C_EFFORT
 TIME_COLUMN            = C_YEAR
