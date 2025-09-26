@@ -245,8 +245,14 @@ server = function(input, output, session) {
         ce_ef_ui("ce-ef", SOURCE_DATASET, REF)
       },
       "ce-ca" = {
-        DEBUG("Should load CE-CA module")
-        #TODO
+        INFO("Load CE-CA module")
+        source("./modules/CE/CA/CA_configuration.R")
+        source("./modules/CE/CA/CA_initialization.R")
+        SOURCE_DATASET = "raw georeferenced catches"
+        DATA = iotc.data.reference.datasets.CE::RAW.CA
+        REF = initialize_CA_reference_data(iotc.data.reference.datasets.CE::RAW.CA)
+        ce_ca_server("ce-ca", SOURCE_DATASET, DATA, REF, input, output, session)
+        ce_ca_ui("ce-ca", SOURCE_DATASET, REF)
       },
       # "ca-raised" = {
       #   LOAD("Load CA-RAISED module")

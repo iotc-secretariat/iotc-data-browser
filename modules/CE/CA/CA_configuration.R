@@ -2,10 +2,6 @@
 
 print("LOADING CA_configuration.R")
 
-CA_RAW_PREFIX  = "CA_RAW"
-
-SOURCE_DATASET = "raw georeferenced catches"
-
 VALUE_COLUMN           = C_CATCH
 TIME_COLUMN            = C_YEAR
 PARETO_CATEGORY_COLUMN = C_FLEET
