@@ -113,44 +113,44 @@ server = function(input, output, session) {
                                    )
                           )
                  ),
-                 tags$div(class="panel panel-warning",
-                          tags$div(class="panel-heading",
-                                   tags$h2(
-                                     faw_("balance-scale-left"),
-                                     faw_("calendar-day"),
-                                     faw_("map-marker-alt"),
-                                     "Raised catches by year, quarter, 5x5 grid, fleet, fishery and species"
-                                   ),
-                          ),
-                          tags$div(class="panel-body",
-                                   tags$h3(
-                                     tags$code(
-                                       tags$span(class="glyphicon glyphicon-ban-circle", " "),
-                                       tags$span("RESTRICTED ACCESS")
-                                     )
-                                   ),
-                                   tags$h3(
-                                     actionLink(inputId = "module_ca_raised", class="btn btn-warning text-monospace button-link", title="Click to explore this dataset",
-                                                icon = faw_("search"),
-                                                label = "CA-RAISED"
-                                     ),
-                                     tags$span("Estimated, raised georeferenced quarterly catches (weight and numbers) for main species")
-                                   ),
-                                   tags$div(
-                                     RECORDS(iotc.data.reference.datasets.CE::METADATA$RSD.CA$DATA),
-                                     LAST_UPDATED(iotc.data.reference.datasets.CE::METADATA$RSD.CA$LAST_UPDATE),
-                                     DISAGGREGATED(),
-                                     RAISED("Raised to represent total catch for the stratum"),
-                                     QUARTERLY(),
-                                     MULTIPLE(
-                                       CATCH_LIVE_WEIGHT(),
-                                       CATCH_NUMBERS()
-                                     ),
-                                     REGULAR_5x5_GRIDS(),
-                                     MAIN_IOTC_SPECIES()
-                                   )
-                          )
-                 ),
+                 # tags$div(class="panel panel-warning",
+                 #          tags$div(class="panel-heading",
+                 #                   tags$h2(
+                 #                     faw_("balance-scale-left"),
+                 #                     faw_("calendar-day"),
+                 #                     faw_("map-marker-alt"),
+                 #                     "Raised catches by year, quarter, 5x5 grid, fleet, fishery and species"
+                 #                   ),
+                 #          ),
+                 #          tags$div(class="panel-body",
+                 #                   tags$h3(
+                 #                     tags$code(
+                 #                       tags$span(class="glyphicon glyphicon-ban-circle", " "),
+                 #                       tags$span("RESTRICTED ACCESS")
+                 #                     )
+                 #                   ),
+                 #                   tags$h3(
+                 #                     actionLink(inputId = "module_ca_raised", class="btn btn-warning text-monospace button-link", title="Click to explore this dataset",
+                 #                                icon = faw_("search"),
+                 #                                label = "CA-RAISED"
+                 #                     ),
+                 #                     tags$span("Estimated, raised georeferenced quarterly catches (weight and numbers) for main species")
+                 #                   ),
+                 #                   tags$div(
+                 #                     RECORDS(iotc.data.reference.datasets.CE::METADATA$RSD.CA$DATA),
+                 #                     LAST_UPDATED(iotc.data.reference.datasets.CE::METADATA$RSD.CA$LAST_UPDATE),
+                 #                     DISAGGREGATED(),
+                 #                     RAISED("Raised to represent total catch for the stratum"),
+                 #                     QUARTERLY(),
+                 #                     MULTIPLE(
+                 #                       CATCH_LIVE_WEIGHT(),
+                 #                       CATCH_NUMBERS()
+                 #                     ),
+                 #                     REGULAR_5x5_GRIDS(),
+                 #                     MAIN_IOTC_SPECIES()
+                 #                   )
+                 #          )
+                 # ),
                  tags$div(class="panel panel-success",
                           tags$div(class="panel-heading",
                                    tags$h2(
@@ -248,10 +248,10 @@ server = function(input, output, session) {
         DEBUG("Should load CE-CA module")
         #TODO
       },
-      "ca-raised" = {
-        DEBUG("Should load CA-RAISED module")
-        #TODO
-      },
+      # "ca-raised" = {
+      #   LOAD("Load CA-RAISED module")
+      #   #TODO
+      # },
       "sf-raw" = {
         INFO("Load SF-RAW module")
         source("./modules/SF/SF_configuration.R")
@@ -273,7 +273,7 @@ server = function(input, output, session) {
   observeEvent(input$module_nc_sci,{ model$page <- "nc-sci"; updateURL(session, "#NC-SCI") }, ignoreInit = T)
   observeEvent(input$module_ce_ef,{ model$page <- "ce-ef" }, ignoreInit = T)
   observeEvent(input$module_ce_ca,{ model$page <- "ce-ca" }, ignoreInit = T)
-  observeEvent(input$module_ca_raised,{ model$page <- "ca-raised" }, ignoreInit = T)
+  # observeEvent(input$module_ca_raised,{ model$page <- "ca-raised" }, ignoreInit = T)
   observeEvent(input$module_sf_raw,{model$page <- "sf-raw"}, ignoreInit = T)
   observeEvent(input$module_sf_std,{model$page <- "sf-std"}, ignoreInit = T)
   
