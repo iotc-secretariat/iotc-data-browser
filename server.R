@@ -295,6 +295,33 @@ server = function(input, output, session) {
         source("./modules/SF/SF_configuration.R")
         source("./modules/SF/SF_initialization.R")
         source("./modules/SF/SF_extras.R")
+        SOURCE_DATASET = "standardized georeferenced size-frequencies"
+        
+        data_SF_STD = rbind(
+          iotc.data.reference.datasets.SF.std::STD.TROP,
+          iotc.data.reference.datasets.SF.std::STD.TEMP,
+          iotc.data.reference.datasets.SF.std::STD.BILL,
+          iotc.data.reference.datasets.SF.std::STD.NERI,
+          iotc.data.reference.datasets.SF.std::STD.SEER,
+          iotc.data.reference.datasets.SF.std::STD.SHRK
+        )
+        
+        data_SF_STD_table = data_SF_STD      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_STD),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
+        data_SF_STD       = data_SF_STD_table[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_STD_table), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
+        
+        DATA       = data_SF_STD
+        DATA_TABLE = data_SF_STD_table
+        
+        DEFAULT_MEASURE_TYPE = "FL"
+        
+        source("./modules/SF/STD/SF_STD_configuration.R")
+        source("./modules/SF/STD/SF_STD_extras.R")
+        REF = initialize_SF_reference_data(DATA)
+        DATA = update_data(REF, DATA)
+        DATA_TABLE = update_data(REF, DATA_TABLE)
+        
+        sf_std_server("sf-std", SOURCE_DATASET, DATA, DATA_TABLE, REF, input, output, session)
+        sf_std_ui("sf-std", SOURCE_DATASET, REF)
       }
     )
   })

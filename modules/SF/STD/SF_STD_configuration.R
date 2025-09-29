@@ -2,10 +2,6 @@
 
 print("LOADING SF_STD_configuration.R")
 
-SF_STD_PREFIX = paste0(SFscripts_PREFIX, "_STD")
-
-SOURCE_DATASET = "standardized georeferenced size-frequencies"
-
 rearrange_data = rearrange_SF_STD_data
 
 current_configuration = function(ref) {
