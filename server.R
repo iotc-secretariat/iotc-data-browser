@@ -263,6 +263,32 @@ server = function(input, output, session) {
         source("./modules/SF/SF_configuration.R")
         source("./modules/SF/SF_initialization.R")
         source("./modules/SF/SF_extras.R")
+        SOURCE_DATASET = "raw georeferenced size-frequencies"
+        data_SF_RAW =
+          rbind(
+            iotc.data.reference.datasets.SF.raw::RAW.TROP,
+            iotc.data.reference.datasets.SF.raw::RAW.TEMP,
+            iotc.data.reference.datasets.SF.raw::RAW.BILL,
+            iotc.data.reference.datasets.SF.raw::RAW.NERI,
+            iotc.data.reference.datasets.SF.raw::RAW.SEER,
+            iotc.data.reference.datasets.SF.raw::RAW.TNEI,
+            iotc.data.reference.datasets.SF.raw::RAW.SHRK,
+            iotc.data.reference.datasets.SF.raw::RAW.ETPS,
+            iotc.data.reference.datasets.SF.raw::RAW.OTHR
+          )
+        data_SF_RAW_table = data_SF_RAW      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_RAW),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
+        data_SF_RAW       = data_SF_RAW_table[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_RAW_table), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
+        
+        DATA       = data_SF_RAW
+        DATA_TABLE = data_SF_RAW_table
+        
+        source("./modules/SF/RAW/SF_RAW_configuration.R")
+        REF = initialize_SF_reference_data(DATA)
+        DATA = update_data(REF, DATA)
+        DATA_TABLE = update_data(REF, DATA_TABLE)
+        
+        sf_raw_server("sf-raw", SOURCE_DATASET, DATA, DATA_TABLE, REF, input, output, session)
+        sf_raw_ui("sf-raw", SOURCE_DATASET, REF)
       },
       "sf-std" = {
         INFO("Load load SF-STD module")

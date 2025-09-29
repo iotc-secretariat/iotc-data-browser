@@ -2,10 +2,6 @@
 
 print("LOADING SF_configuration.R")
 
-SFscripts_PREFIX = "SF"
-
-SOURCE_DATASET = "< to be specified >"
-
 VALUE_COLUMN           = C_FISH_COUNT
 TIME_COLUMN            = C_YEAR
 PARETO_CATEGORY_COLUMN = C_FLEET
@@ -34,7 +30,7 @@ PLOT_CONFIGURATIONS = list(
 measure_type_by_code = function(measure_type_code) {
   unit = ifelse(input_is_available(measure_type_code), measure_type_code, DEFAULT_MEASURE_TYPE)
 
-  return(all_codes("MEASURE_TYPES")[CODE == unit])
+  return(iotc.data.reference.codelists::LEGACY_MEASURE_TYPES_IOTDB[CODE == unit])
 }
 
 measure_type_description_by_code = function(measure_type_code) {

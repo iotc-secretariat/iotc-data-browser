@@ -937,12 +937,12 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-data-reference-codelists",
       "RemoteUsername": "iotc-secretariat",
-      "RemoteSha": "be477a2799875cc603003bc4d9aa59fe684740f8",
+      "RemoteSha": "f615306072ff15ec9f0ed23318fdaab389b7bf47",
       "Requirements": [
         "R",
         "data.table"
       ],
-      "Hash": "320ef209b19bb6bfc0225ad884af0265"
+      "Hash": "744827b37664d0f624068f178868e78a"
     },
     "iotc.data.reference.datasets.CE": {
       "Package": "iotc.data.reference.datasets.CE",

@@ -5,7 +5,7 @@ print("LOADING SF_initialization.R")
 initialize_SF_reference_data = function(data) {
   ref = initialize_reference_data(data)
   
-  all_measure_types  = all_codes("MEASURE_TYPES")[CODE %in% unique(data$MEASURE_TYPE_CODE)]
+  all_measure_types  = iotc.data.reference.codelists::LEGACY_MEASURE_TYPES_IOTDB[CODE %in% unique(data$MEASURE_TYPE_CODE)]
   all_measure_types  = all_measure_types[, .(SORT, MEASURE_TYPE_CODE = CODE, MEASURE_TYPE = NAME_EN, MEASURE_UNIT)]
   all_measure_types  = all_measure_types[order(MEASURE_UNIT, SORT)]
   

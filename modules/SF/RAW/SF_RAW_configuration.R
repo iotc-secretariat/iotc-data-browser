@@ -2,10 +2,6 @@
 
 print("LOADING SF_RAW_configuration.R")
 
-SF_RAW_PREFIX = paste0(SFscripts_PREFIX, "_RAW")
-
-SOURCE_DATASET = "raw georeferenced size-frequencies"
-
 rearrange_data = rearrange_SF_RAW_data
 
 current_configuration = function(ref) {
