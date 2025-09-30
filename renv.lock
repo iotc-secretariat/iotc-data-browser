@@ -2200,7 +2200,7 @@
       "RemoteRepo": "iotc-data-reference-codelists",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "f615306072ff15ec9f0ed23318fdaab389b7bf47",
+      "RemoteSha": "75c760beebd97414af74795ede3dd82e7475b705",
       "NeedsCompilation": "no"
     },
     "iotc.data.reference.datasets.CE": {
