@@ -3,7 +3,7 @@ nc_sci_ui = function(id, source_dataset, ref){
     tags$head(includeHTML(("www/google-analytics.html"))),
     includeCSS("www/css/common.css"),
     includeCSS("www/css/button.css"),
-    title = UI_window_title(source_dataset, iotc.data.reference.datasets.NC::METADATA$SCI$LAST_UPDATE, REF),
+    title = UI_window_title(source_dataset, iotc.data.reference.datasets.NC::METADATA$SCI$LAST_UPDATE, ref),
     UI_main(
       source_dataset, iotc.data.reference.datasets.NC::METADATA$SCI$LAST_UPDATE, ref, "primary",
       fluidRow(
