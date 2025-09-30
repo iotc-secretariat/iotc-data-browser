@@ -1950,7 +1950,7 @@
       "RemoteRepo": "iotc-lib-base-common-plots",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "0877bf63bde5ee6f35d1a3d0274d874f3117be08",
+      "RemoteSha": "2e0a4b5a122674c643e30396c5493f7e718735e8",
       "NeedsCompilation": "no"
     },
     "iotc.core.db.connections": {
