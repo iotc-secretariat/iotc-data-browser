@@ -5,7 +5,7 @@ nc_raw_ui <- function(id, source_dataset, ref){
     includeCSS("www/css/button.css"),
     title = UI_window_title(source_dataset, iotc.data.reference.datasets.NC::METADATA$RAW$LAST_UPDATE, ref),
     UI_main(
-      source_dataset, iotc.data.reference.datasets.NC::METADATA$RAW$LAST_UPDATE, REF, "primary",
+      source_dataset, iotc.data.reference.datasets.NC::METADATA$RAW$LAST_UPDATE, ref, "primary",
       fluidRow(
         UI_filters_NC(ref),
         column(
