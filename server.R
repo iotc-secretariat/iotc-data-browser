@@ -26,7 +26,7 @@ server = function(input, output, session) {
                                      faw_("balance-scale"),
                                      faw_("calendar-alt"),
                                      faw_("globe-asia"),
-                                     "Nominal catches by year, IOTC area, fleet, fishery and species"
+                                     "Retained catches by year, IOTC area, fleet, fishery, and species"
                                    )
                           ),
                           tags$div(class="panel-body",
@@ -35,7 +35,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "NC-RAW"
                                      ),
-                                     tags$span("Nominal catches for all species, including bycatch ones")
+                                     tags$span("Retained catches for all IOTC and non-IOTC species")
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.NC::METADATA$RAW$DATA),
@@ -52,7 +52,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "NC-SCI"
                                      ),
-                                     tags$span("Fully disaggregated, best scientific estimates for IOTC species only")
+                                     tags$span("Best scientific estimates of retained catches of IOTC species")
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.NC::METADATA$SCI$DATA),
@@ -72,7 +72,7 @@ server = function(input, output, session) {
                                      faw_("balance-scale"),
                                      faw_("calendar-day"),
                                      faw_("map-marker-alt"),
-                                     "Catch-and-effort by year, quarter, grid, fleet, fishery and species")
+                                     "Retained catches and efforts by year, quarter, grid, fleet, fishery, and species")
                           ),
                           tags$div(class="panel-body",
                                    tags$h3(
@@ -80,13 +80,13 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "CE-EF"
                                      ),
-                                     tags$span("Reported georeferenced quarterly efforts")
+                                     tags$span("Reported geo-referenced efforts")
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.CE::METADATA$RAW.EF$DATA),
                                      LAST_UPDATED(iotc.data.reference.datasets.CE::METADATA$RAW.EF$LAST_UPDATE),
                                      RAW(),
-                                     UNRAISED("Not raised to total nominal efforts for the stratum"),
+                                     UNRAISED("Not raised to total efforts for the stratum"),
                                      QUARTERLY(),
                                      EFFORT(),
                                      REGULAR_GRIDS()
@@ -96,13 +96,13 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "CE-CA"
                                      ),
-                                     tags$span("Reported georeferenced quarterly catches (in weight and / or numbers)")
+                                     tags$span("Reported geo-referenced catches (weight and/or numbers)")
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.CE::METADATA$CA$DATA),
                                      LAST_UPDATED(iotc.data.reference.datasets.CE::METADATA$CA$LAST_UPDATE),
                                      RAW(),
-                                     UNRAISED("Not raised to total nominal catches for the stratum"),
+                                     UNRAISED("Not raised to total retained catches for the stratum"),
                                      QUARTERLY(),
                                      MULTIPLE(
                                        CATCH_LIVE_WEIGHT(),
@@ -157,7 +157,7 @@ server = function(input, output, session) {
                                      faw_("sliders-h"),
                                      faw_("calendar-day"),
                                      faw_("map-marker-alt"),
-                                     "Size-frequency by year, quarter, grid, fleet, fishery, species and measure"
+                                     "Size-frequencies of catches by year, quarter, grid, fleet, fishery, and species"
                                    )
                           ),
                           tags$div(class="panel-body",
@@ -166,7 +166,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "SF-RAW"
                                      ),
-                                     tags$span("Reported georeferenced size-frequency")
+                                     tags$span("Reported geo-referenced size-frequencies for all IOTC and non-IOTC species")
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.SF.raw::METADATA$RAW.SF$DATA),
@@ -186,7 +186,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "SF-STD"
                                      ),
-                                     tags$span("Standardized georeferenced size-frequency data for IOTC and relevant shark species")
+                                     tags$span("Standardised geo-referenced size-frequencies for IOTC species and common pelagic sharks")
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.SF.std::METADATA$STD.SF$DATA),
