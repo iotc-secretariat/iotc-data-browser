@@ -3,6 +3,15 @@ server = function(input, output, session) {
   
   model <- reactiveValues(page = "home")
   
+  DATASET_TITLES = list(
+    NC_RAW = "Retained catches for all IOTC and non-IOTC species",
+    NC_SCI = "Best scientific estimates of retained catches of IOTC species",
+    CE_EF = "Reported geo-referenced efforts",
+    CE_CA = "Reported geo-referenced catches (weight and/or numbers)",
+    SF_RAW = "Reported geo-referenced size-frequencies for all IOTC and non-IOTC species",
+    SF_STD = "Standardised geo-referenced size-frequencies for IOTC species and common pelagic sharks"
+  )
+  
   homeUI <- function(){
     tagList(
       tags$head(includeHTML(("www/google-analytics.html"))),
@@ -35,7 +44,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "NC-RAW"
                                      ),
-                                     tags$span("Retained catches for all IOTC and non-IOTC species")
+                                     tags$span(DATASET_TITLES$NC_RAW)
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.NC::METADATA$RAW$DATA),
@@ -52,7 +61,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "NC-SCI"
                                      ),
-                                     tags$span("Best scientific estimates of retained catches of IOTC species")
+                                     tags$span(DATASET_TITLES$NC_SCI)
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.NC::METADATA$SCI$DATA),
@@ -80,7 +89,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "CE-EF"
                                      ),
-                                     tags$span("Reported geo-referenced efforts")
+                                     tags$span(DATASET_TITLES$CE_EF)
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.CE::METADATA$RAW.EF$DATA),
@@ -96,7 +105,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "CE-CA"
                                      ),
-                                     tags$span("Reported geo-referenced catches (weight and/or numbers)")
+                                     tags$span(DATASET_TITLES$CE_CA)
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.CE::METADATA$CA$DATA),
@@ -166,7 +175,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "SF-RAW"
                                      ),
-                                     tags$span("Reported geo-referenced size-frequencies for all IOTC and non-IOTC species")
+                                     tags$span(DATASET_TITLES$SF_RAW)
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.SF.raw::METADATA$RAW.SF$DATA),
@@ -186,7 +195,7 @@ server = function(input, output, session) {
                                                 icon = faw_("search"),
                                                 label = "SF-STD"
                                      ),
-                                     tags$span("Standardised geo-referenced size-frequencies for IOTC species and common pelagic sharks")
+                                     tags$span(DATASET_TITLES$SF_STD)
                                    ),
                                    tags$div(
                                      RECORDS(iotc.data.reference.datasets.SF.std::METADATA$STD.SF$DATA),
@@ -219,7 +228,7 @@ server = function(input, output, session) {
         source("./modules/NC/NC_configuration.R")
         source("./modules/NC/NC_initialization.R")
         source("./modules/NC/NC_extras.R")
-        SOURCE_DATASET = "raw nominal catches"
+        SOURCE_DATASET = DATASET_TITLES$NC_RAW
         REF = initialize_NC_reference_data(iotc.data.reference.datasets.NC::RAW)
         nc_raw_server("nc-raw", SOURCE_DATASET, REF, input, output, session)
         nc_raw_ui("nc-raw", SOURCE_DATASET, REF)
@@ -229,7 +238,7 @@ server = function(input, output, session) {
         source("./modules/NC/NC_configuration.R")
         source("./modules/NC/NC_initialization.R")
         source("./modules/NC/NC_extras.R")
-        SOURCE_DATASET = "best scientific estimates of nominal catches"
+        SOURCE_DATASET = DATASET_TITLES$NC_SCI
         REF = initialize_NC_reference_data(iotc.data.reference.datasets.NC::SCI)
         nc_sci_server("nc-sci", SOURCE_DATASET, REF, input, output, session)
         nc_sci_ui("nc-sci", SOURCE_DATASET, REF)
@@ -238,7 +247,7 @@ server = function(input, output, session) {
         INFO("Load CE-EF module")
         source("./modules/CE/EF/EF_configuration.R")
         source("./modules/CE/EF/EF_initialization.R")
-        SOURCE_DATASET = "raw georeferenced efforts"
+        SOURCE_DATASET = DATASET_TITLES$CE_EF
         REF = initialize_EF_reference_data(iotc.data.reference.datasets.CE::RAW.EF)
         DATA = update_data(REF, iotc.data.reference.datasets.CE::RAW.EF)
         ce_ef_server("ce-ef", SOURCE_DATASET, DATA, REF, input, output, session)
@@ -248,7 +257,7 @@ server = function(input, output, session) {
         INFO("Load CE-CA module")
         source("./modules/CE/CA/CA_configuration.R")
         source("./modules/CE/CA/CA_initialization.R")
-        SOURCE_DATASET = "raw georeferenced catches"
+        SOURCE_DATASET = DATASET_TITLES$CE_CA
         DATA = iotc.data.reference.datasets.CE::RAW.CA
         REF = initialize_CA_reference_data(iotc.data.reference.datasets.CE::RAW.CA)
         ce_ca_server("ce-ca", SOURCE_DATASET, DATA, REF, input, output, session)
@@ -263,7 +272,7 @@ server = function(input, output, session) {
         source("./modules/SF/SF_configuration.R")
         source("./modules/SF/SF_initialization.R")
         source("./modules/SF/SF_extras.R")
-        SOURCE_DATASET = "raw georeferenced size-frequencies"
+        SOURCE_DATASET = DATASET_TITLES$SF_RAW
         DATA =
           rbind(
             iotc.data.reference.datasets.SF.raw::RAW.TROP,
@@ -292,7 +301,7 @@ server = function(input, output, session) {
         source("./modules/SF/SF_configuration.R")
         source("./modules/SF/SF_initialization.R")
         source("./modules/SF/SF_extras.R")
-        SOURCE_DATASET = "standardized georeferenced size-frequencies"
+        SOURCE_DATASET = DATASET_TITLES$SF_STD
         
         DATA = rbind(
           iotc.data.reference.datasets.SF.std::STD.TROP,
