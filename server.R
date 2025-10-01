@@ -264,7 +264,7 @@ server = function(input, output, session) {
         source("./modules/SF/SF_initialization.R")
         source("./modules/SF/SF_extras.R")
         SOURCE_DATASET = "raw georeferenced size-frequencies"
-        data_SF_RAW =
+        DATA =
           rbind(
             iotc.data.reference.datasets.SF.raw::RAW.TROP,
             iotc.data.reference.datasets.SF.raw::RAW.TEMP,
@@ -276,11 +276,8 @@ server = function(input, output, session) {
             iotc.data.reference.datasets.SF.raw::RAW.ETPS,
             iotc.data.reference.datasets.SF.raw::RAW.OTHR
           )
-        data_SF_RAW_table = data_SF_RAW      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_RAW),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
-        data_SF_RAW       = data_SF_RAW_table[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_RAW_table), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
-        
-        DATA       = data_SF_RAW
-        DATA_TABLE = data_SF_RAW_table
+        DATA_TABLE = DATA      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
+        DATA       = DATA_TABLE[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA_TABLE), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
         
         source("./modules/SF/RAW/SF_RAW_configuration.R")
         REF = initialize_SF_reference_data(DATA)
@@ -297,7 +294,7 @@ server = function(input, output, session) {
         source("./modules/SF/SF_extras.R")
         SOURCE_DATASET = "standardized georeferenced size-frequencies"
         
-        data_SF_STD = rbind(
+        DATA = rbind(
           iotc.data.reference.datasets.SF.std::STD.TROP,
           iotc.data.reference.datasets.SF.std::STD.TEMP,
           iotc.data.reference.datasets.SF.std::STD.BILL,
@@ -306,11 +303,8 @@ server = function(input, output, session) {
           iotc.data.reference.datasets.SF.std::STD.SHRK
         )
         
-        data_SF_STD_table = data_SF_STD      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_STD),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
-        data_SF_STD       = data_SF_STD_table[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(data_SF_STD_table), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
-        
-        DATA       = data_SF_STD
-        DATA_TABLE = data_SF_STD_table
+        DATA_TABLE = DATA      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
+        DATA       = DATA_TABLE[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA_TABLE), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
         
         DEFAULT_MEASURE_TYPE = "FL"
         
