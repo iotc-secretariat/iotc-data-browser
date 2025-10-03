@@ -1,16 +1,15 @@
 
 server = function(input, output, session) {
   
-  model <- reactiveValues(page = "home")
-  
-  DATASET_TITLES = list(
-    NC_RAW = "Retained catches for all IOTC and non-IOTC species",
-    NC_SCI = "Best scientific estimates of retained catches of IOTC species",
-    CE_EF = "Reported geo-referenced efforts",
-    CE_CA = "Reported geo-referenced catches (weight and/or numbers)",
-    SF_RAW = "Reported geo-referenced size-frequencies for all IOTC and non-IOTC species",
-    SF_STD = "Standardised geo-referenced size-frequencies for IOTC species and common pelagic sharks"
-  )
+  #model <- reactiveValues(page = "home", load_from_url = TRUE)
+  react_module <- reactiveVal("home")
+  react_resolver <- reactiveVal(TRUE)
+  react_nc_raw_activated <- reactiveVal(FALSE)
+  react_nc_sci_activated <- reactiveVal(FALSE)
+  react_ce_ef_activated <- reactiveVal(FALSE)
+  react_ce_ca_activated <- reactiveVal(FALSE)
+  react_sf_raw_activated <- reactiveVal(FALSE)
+  react_sf_std_activated <- reactiveVal(FALSE)
   
   homeUI <- function(){
     tagList(
@@ -218,138 +217,97 @@ server = function(input, output, session) {
   }
   
   output$main_ui <- renderUI({
-    
-    switch(model$page,
+    DEBUG("Render MAIN UI")
+    switch(react_module(),
       "home" = {
         homeUI()
       },
       "nc-raw" = {
         INFO("Load NC-RAW module")
-        source("./modules/NC/NC_configuration.R")
-        source("./modules/NC/NC_initialization.R")
-        source("./modules/NC/NC_extras.R")
-        SOURCE_DATASET = DATASET_TITLES$NC_RAW
-        REF = initialize_NC_reference_data(iotc.data.reference.datasets.NC::RAW)
-        nc_raw_server("nc-raw", SOURCE_DATASET, REF, input, output, session)
-        nc_raw_ui("nc-raw", SOURCE_DATASET, REF)
+        nc_raw_ui("nc-raw")
       },
       "nc-sci" = {
         INFO("Load NC-SCI module")
-        source("./modules/NC/NC_configuration.R")
-        source("./modules/NC/NC_initialization.R")
-        source("./modules/NC/NC_extras.R")
-        SOURCE_DATASET = DATASET_TITLES$NC_SCI
-        REF = initialize_NC_reference_data(iotc.data.reference.datasets.NC::SCI)
-        nc_sci_server("nc-sci", SOURCE_DATASET, REF, input, output, session)
-        nc_sci_ui("nc-sci", SOURCE_DATASET, REF)
+        nc_sci_ui("nc-sci")
       },
       "ce-ef" = {
         INFO("Load CE-EF module")
-        source("./modules/CE/EF/EF_configuration.R")
-        source("./modules/CE/EF/EF_initialization.R")
-        SOURCE_DATASET = DATASET_TITLES$CE_EF
-        REF = initialize_EF_reference_data(iotc.data.reference.datasets.CE::RAW.EF)
-        DATA = update_data(REF, iotc.data.reference.datasets.CE::RAW.EF)
-        ce_ef_server("ce-ef", SOURCE_DATASET, DATA, REF, input, output, session)
-        ce_ef_ui("ce-ef", SOURCE_DATASET, REF)
+        ce_ef_ui("ce-ef")
       },
       "ce-ca" = {
         INFO("Load CE-CA module")
-        source("./modules/CE/CA/CA_configuration.R")
-        source("./modules/CE/CA/CA_initialization.R")
-        SOURCE_DATASET = DATASET_TITLES$CE_CA
-        DATA = iotc.data.reference.datasets.CE::RAW.CA
-        REF = initialize_CA_reference_data(iotc.data.reference.datasets.CE::RAW.CA)
-        ce_ca_server("ce-ca", SOURCE_DATASET, DATA, REF, input, output, session)
-        ce_ca_ui("ce-ca", SOURCE_DATASET, REF)
+        ce_ca_ui("ce-ca")
       },
-      # "ca-raised" = {
-      #   LOAD("Load CA-RAISED module")
-      #   #TODO
-      # },
       "sf-raw" = {
         INFO("Load SF-RAW module")
-        source("./modules/SF/SF_configuration.R")
-        source("./modules/SF/SF_initialization.R")
-        source("./modules/SF/SF_extras.R")
-        SOURCE_DATASET = DATASET_TITLES$SF_RAW
-        DATA =
-          rbind(
-            iotc.data.reference.datasets.SF.raw::RAW.TROP,
-            iotc.data.reference.datasets.SF.raw::RAW.TEMP,
-            iotc.data.reference.datasets.SF.raw::RAW.BILL,
-            iotc.data.reference.datasets.SF.raw::RAW.NERI,
-            iotc.data.reference.datasets.SF.raw::RAW.SEER,
-            iotc.data.reference.datasets.SF.raw::RAW.TNEI,
-            iotc.data.reference.datasets.SF.raw::RAW.SHRK,
-            iotc.data.reference.datasets.SF.raw::RAW.ETPS,
-            iotc.data.reference.datasets.SF.raw::RAW.OTHR
-          )
-        DATA_TABLE = DATA      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
-        DATA       = DATA_TABLE[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA_TABLE), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
-        
-        source("./modules/SF/RAW/SF_RAW_configuration.R")
-        REF = initialize_SF_reference_data(DATA)
-        DATA = update_data(REF, DATA)
-        DATA_TABLE = update_data(REF, DATA_TABLE)
-        
-        sf_raw_server("sf-raw", SOURCE_DATASET, DATA, DATA_TABLE, REF, input, output, session)
-        sf_raw_ui("sf-raw", SOURCE_DATASET, REF)
+        sf_raw_ui("sf-raw")
       },
       "sf-std" = {
         INFO("Load load SF-STD module")
-        source("./modules/SF/SF_configuration.R")
-        source("./modules/SF/SF_initialization.R")
-        source("./modules/SF/SF_extras.R")
-        SOURCE_DATASET = DATASET_TITLES$SF_STD
-        
-        DATA = rbind(
-          iotc.data.reference.datasets.SF.std::STD.TROP,
-          iotc.data.reference.datasets.SF.std::STD.TEMP,
-          iotc.data.reference.datasets.SF.std::STD.BILL,
-          iotc.data.reference.datasets.SF.std::STD.NERI,
-          iotc.data.reference.datasets.SF.std::STD.SEER,
-          iotc.data.reference.datasets.SF.std::STD.SHRK
-        )
-        
-        DATA_TABLE = DATA      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
-        DATA       = DATA_TABLE[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(DATA_TABLE), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
-        
-        DEFAULT_MEASURE_TYPE = "FL"
-        
-        source("./modules/SF/STD/SF_STD_configuration.R")
-        source("./modules/SF/STD/SF_STD_extras.R")
-        REF = initialize_SF_reference_data(DATA)
-        DATA = update_data(REF, DATA)
-        DATA_TABLE = update_data(REF, DATA_TABLE)
-        
-        sf_std_server("sf-std", SOURCE_DATASET, DATA, DATA_TABLE, REF, input, output, session)
-        sf_std_ui("sf-std", SOURCE_DATASET, REF)
+        sf_std_ui("sf-std")
       }
     )
   })
   
   #events to update the model/page
-  observeEvent(input$home,{ model$page <- "home"; updateURL(session, "#") }, ignoreInit = T)
-  observeEvent(input$module_nc_raw,{ model$page <- "nc-raw"; updateURL(session, "#NC-RAW") }, ignoreInit = T)
-  observeEvent(input$module_nc_sci,{ model$page <- "nc-sci"; updateURL(session, "#NC-SCI") }, ignoreInit = T)
-  observeEvent(input$module_ce_ef,{ model$page <- "ce-ef" }, ignoreInit = T)
-  observeEvent(input$module_ce_ca,{ model$page <- "ce-ca" }, ignoreInit = T)
-  # observeEvent(input$module_ca_raised,{ model$page <- "ca-raised" }, ignoreInit = T)
-  observeEvent(input$module_sf_raw,{model$page <- "sf-raw"}, ignoreInit = T)
-  observeEvent(input$module_sf_std,{model$page <- "sf-std"}, ignoreInit = T)
+  observeEvent(input$home,{ 
+    react_module("home"); react_resolver(FALSE);
+    updateURL(session, "#") 
+  }, ignoreInit = T)
+  observeEvent(input$module_nc_raw,{
+    react_module("nc-raw"); react_resolver(FALSE);
+    react_nc_raw_activated(TRUE)
+    updateURL(session, "#NC-RAW")
+  }, ignoreInit = T)
+  observeEvent(input$module_nc_sci,{
+    react_module("nc-sci"); react_resolver(FALSE);
+    react_nc_sci_activated(TRUE)
+    updateURL(session, "#NC-SCI")
+  }, ignoreInit = T)
+  observeEvent(input$module_ce_ef,{
+    react_module("ce-ef"); react_resolver(FALSE);
+    react_ce_ef_activated(TRUE)
+    updateURL(session, "#CE-EF")
+  }, ignoreInit = T)
+  observeEvent(input$module_ce_ca,{
+    react_module("ce-ca"); react_resolver(FALSE);
+    react_ce_ca_activated(TRUE)
+    updateURL(session, "#CE-CA")
+  }, ignoreInit = T)
+  observeEvent(input$module_sf_raw,{
+    react_module("sf-raw"); react_resolver(FALSE);
+    react_sf_raw_activated(TRUE)
+    updateURL(session, "#SF-RAW")
+  }, ignoreInit = T)
+  observeEvent(input$module_sf_std,{
+    react_module("sf-std"); react_resolver(FALSE);
+    react_sf_std_activated(TRUE)
+    updateURL(session, "#SF-STD")
+  }, ignoreInit = T)
   
   #mechanism to load a module page from the URL
   observe({
+    req(react_resolver())
     hash = session$clientData$url_hash
-    page = NULL
+    module = NULL
     print(hash)
     if(hash %in% c("#","")){
-      page = "home"
+      module = "home"
     }else{
-      page = tolower(substr(hash, 2, nchar(hash)))
+      module = tolower(substr(hash, 2, nchar(hash)))
     }
-    model$page = page
+    if(module != "home"){
+      module_prefix = gsub("-","_", module)
+      eval(parse(text = paste0("react_", module_prefix, "_activated(TRUE)")))
+    }
+    react_module(module)
   })
 
+  #configure module servers
+  nc_raw_server("nc-raw", react_nc_raw_activated)
+  nc_sci_server("nc-sci", react_nc_sci_activated)
+  ce_ef_server("ce-ef", react_ce_ef_activated)
+  ce_ca_server("ce-ca", react_ce_ca_activated)
+  sf_raw_server("sf-raw", react_sf_raw_activated)
+  sf_std_server("sf-std", react_sf_std_activated)
 }

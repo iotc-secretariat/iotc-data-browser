@@ -212,12 +212,15 @@ common_prepare_handlers = function(current_data, current_data_table, input, outp
 
   # Output tables
 
-  output$table        = { renderDataTable(options = list(pageLength = 10), dataTable()) }
+  output$table        = { 
+    DT::renderDT(
+      dataTable(),
+      server = TRUE
+    ) 
+  }
 
   # Reactive plot functions
 
-  print(configuration)
-  print(names(input))
   plotBarChart         = reactive_plotBarChart        (current_data, input, configuration)
   plotBarChartExpanded = reactive_plotBarChartExpanded(current_data, input, configuration)
   plotLineChart        = reactive_plotLineChart       (current_data, input, configuration)

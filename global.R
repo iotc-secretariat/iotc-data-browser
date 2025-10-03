@@ -3,6 +3,8 @@ require(shiny)
 require(periscope)
 require(lubridate)
 require(stringr)
+require(data.table)
+require(DT)
 
 #iotc software packages
 #remotes::install_github("iotc-secretariat/iotc-lib-core-utils-constants")
@@ -63,3 +65,13 @@ source("./modules/SF/RAW/server.R")
 source("./modules/SF/RAW/ui.R")
 source("./modules/SF/STD/server.R")
 source("./modules/SF/STD/ui.R")
+
+#dataset definitions
+DATASET_TITLES = list(
+  NC_RAW = "Retained catches for all IOTC and non-IOTC species",
+  NC_SCI = "Best scientific estimates of retained catches of IOTC species",
+  CE_EF = "Reported geo-referenced efforts",
+  CE_CA = "Reported geo-referenced catches (weight and/or numbers)",
+  SF_RAW = "Reported geo-referenced size-frequencies for all IOTC and non-IOTC species",
+  SF_STD = "Standardised geo-referenced size-frequencies for IOTC species and common pelagic sharks"
+)

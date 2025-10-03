@@ -31,10 +31,6 @@ reactive_plotQualityChart = function(NC_data_quality, input_filters, dataset_cod
 
 prepare_NC_handlers = function(current_data, data_quality, input, output, prefix, source_dataset, last_update, configuration) {
   
-  print(head(current_data))
-  
-  DEBUG("Prepare server for NC")
-  
   data_prefix = paste0("NC_", prefix)
   NC_prefix = paste0(data_prefix, "_NC")
   CE_prefix = paste0(data_prefix, "_CE")

@@ -215,17 +215,17 @@ UI_glasspane = function() {
   )
 }
 
-UI_filters_categories = function(categories, selected = C_FISHERY_GROUP) {
+UI_filters_categories = function(ns, categories, selected = C_FISHERY_GROUP) {
   return(
     fluidRow(
       column(
         width = 4,
-        selectizeInput("category", "Categorize by",
+        selectizeInput(ns("category"), "Categorize by",
                        width = "100%", categories, selected = selected, multiple = FALSE)
       ),
       column(
         width = 4,
-        sliderInput("maxCats", "Max. categories",
+        sliderInput(ns("maxCats"), "Max. categories",
                     width = "100%",
                     min = 1, max = 20,
                     value = 10, step = 1,
@@ -234,236 +234,236 @@ UI_filters_categories = function(categories, selected = C_FISHERY_GROUP) {
       ),
       column(
         width = 4,
-        switchButton("categoryColors", "Use default category colors", value = TRUE, col = "GB", type = "TF")
+        switchButton(inputId = ns("categoryColors"), "Use default category colors", value = TRUE, col = "GB", type = "TF")
       )
     )
   )
 }
 
-UI_filters_NC = function(references) {
+UI_filters_NC = function(ns, references) {
   return(
     column(width = 3,
-           sliderInput("period", "Years",
+           sliderInput(inputId = ns("period"), "Years",
                        width = "100%",
                        min = references$YEARS$MIN, max = references$YEARS$MAX, value = range(references$YEARS$MIN, references$YEARS$MAX),
                        step = 1, sep = "", animate = FALSE),
 
-           selectizeInput("fishingGrounds", "IO major area",   references$FISHING_GROUNDS, multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fishingGrounds"), "IO major area",   references$FISHING_GROUNDS, multiple = TRUE,  width = "100%"),
 
-           selectizeInput("fleets", "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fleets"), "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("species", "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("species"), "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("fisheryTypes", "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheryGroups", "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheries", "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryTypes"), "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryGroups"), "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheries"), "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("gears", "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("gears"), "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("speciesCategories", "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesGroups", "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesWps", "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
-           selectizeInput("IUCNStatus", "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
+           selectizeInput(ns("speciesCategories"), "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesGroups"), "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesWps"), "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("IUCNStatus"), "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
     )
   )
 }
 
-UI_filters_EF = function(references) {
+UI_filters_EF = function(ns, references) {
   return(
     column(width = 3,
-           sliderInput("period", "Years",
+           sliderInput(ns("period"), "Years",
                        width = "100%",
                        min = references$YEARS$MIN, max = references$YEARS$MAX, value = range(references$YEARS$MIN, references$YEARS$MAX),
                        step = 1, sep = "", animate = FALSE),
-           selectizeInput("unit", "Effort unit",            references$EFFORT_UNITS   , multiple = FALSE, width = "100%",
+           selectizeInput(ns("unit"), "Effort unit",            references$EFFORT_UNITS   , multiple = FALSE, width = "100%",
                           selected = "HOOKS"),
 
-           selectizeInput("fleets", "Fleet",                references$FLEETS         , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fleets"), "Fleet",                references$FLEETS         , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("fisheryTypes", "Fishery type",   references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheryGroups", "Fishery group", references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheries", "Fishery",           references$FISHERIES      , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryTypes"), "Fishery type",   references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryGroups"), "Fishery group", references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheries"), "Fishery",           references$FISHERIES      , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("gears", "Gear",                  references$GEARS          , multiple = TRUE,  width = "100%")
+           selectizeInput(ns("gears"), "Gear",                  references$GEARS          , multiple = TRUE,  width = "100%")
     )
   )
 }
 
-UI_filters_CA = function(references) {
+UI_filters_CA = function(ns, references) {
   return(
     column(width = 3,
-           sliderInput("period", "Years",
+           sliderInput(ns("period"), "Years",
                        width = "100%",
                        min = references$YEARS$MIN, max = references$YEARS$MAX, value = range(references$YEARS$MIN, references$YEARS$MAX),
                        step = 1, sep = "", animate = FALSE),
 
-           selectizeInput("unit", "Catch unit",                references$CATCH_UNITS    , multiple = FALSE, width = "100%"),
+           selectizeInput(ns("unit"), "Catch unit",                references$CATCH_UNITS    , multiple = FALSE, width = "100%"),
 
-           selectizeInput("fleets", "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fleets"), "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("species", "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("species"), "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("fisheryTypes", "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheries", "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheryGroups", "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryTypes"), "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheries"), "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryGroups"), "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("gears", "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("gears"), "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("speciesCategories", "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesGroups", "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesWps", "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
-           selectizeInput("IUCNStatus", "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
+           selectizeInput(ns("speciesCategories"), "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesGroups"), "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesWps"), "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("IUCNStatus"), "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
     )
   )
 }
 
-UI_filters_SF = function(references) {
+UI_filters_SF = function(ns, references) {
   return(
     column(width = 3,
-           sliderInput("period", "Years",
+           sliderInput(ns("period"), "Years",
                        width = "100%",
                        min = references$YEARS$MIN, max = references$YEARS$MAX, value = range(references$YEARS$MIN, references$YEARS$MAX),
                        step = 1, sep = "", animate = FALSE),
 
-           selectizeInput("unit", "Measure type",              references$MEASURE_TYPES  , multiple = FALSE, width = "100%"),
-           selectizeInput("raising", "Raising",                references$RAISINGS       , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("unit"), "Measure type",              references$MEASURE_TYPES  , multiple = FALSE, width = "100%"),
+           selectizeInput(ns("raising"), "Raising",                references$RAISINGS       , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("fleets", "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fleets"), "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("species", "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("species"), "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("fisheryTypes", "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheryGroups", "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheries", "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryTypes"), "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryGroups"), "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheries"), "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("gears", "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("gears"), "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("speciesCategories", "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesGroups", "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesWps", "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
-           selectizeInput("IUCNStatus", "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
+           selectizeInput(ns("speciesCategories"), "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesGroups"), "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesWps"), "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("IUCNStatus"), "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
     )
   )
 }
 
-UI_filters_SF_STD = function(references) {
+UI_filters_SF_STD = function(ns, references) {
   return(
     column(width = 3,
-           sliderInput("period", "Years",
+           sliderInput(ns("period"), "Years",
                        width = "100%",
                        min = references$YEARS$MIN, max = references$YEARS$MAX, value = range(references$YEARS$MIN, references$YEARS$MAX),
                        step = 1, sep = "", animate = FALSE),
 
-           selectizeInput("fleets", "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fleets"), "Fleet",                   references$FLEETS         , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("species", "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("species"), "Species",                references$SPECIES        , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("fisheryTypes", "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheryGroups", "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
-           selectizeInput("fisheries", "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryTypes"), "Fishery type",      references$FISHERY_TYPES  , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheryGroups"), "Fishery group",    references$FISHERY_GROUPS , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("fisheries"), "Fishery",              references$FISHERIES      , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("gears", "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("gears"), "Gear",                     references$GEARS          , multiple = TRUE,  width = "100%"),
 
-           selectizeInput("speciesCategories", "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesGroups", "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
-           selectizeInput("speciesWps", "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
-           selectizeInput("IUCNStatus", "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
+           selectizeInput(ns("speciesCategories"), "Species category", references$SPECIES_CATEGORIES, multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesGroups"), "Species group",        references$SPECIES_GROUPS    , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("speciesWps"), "Species working party",   references$SPECIES_WPS       , multiple = TRUE,  width = "100%"),
+           selectizeInput(ns("IUCNStatus"), "Species IUCN status",     references$IUCN_STATUS       , multiple = TRUE,  width = "100%")
     )
   )
 }
 
-UI_summary_default = function() {
+UI_summary_default = function(ns) {
   return(
     tabPanel(
       icon = icon("stats", lib = "glyphicon"),
       "Summary",
       tabsetPanel(
         tabPanel(icon = icon("far fa-chart-bar"),
-                "Stacked barchart",            do_plot_output("barChart"),
-                                               do_create_download_button("downloadBarChart")),
+                "Stacked barchart",            do_plot_output(ns("barChart")),
+                                               do_create_download_button(ns("downloadBarChart"))),
         tabPanel(icon = icon("far fa-chart-bar"),
-                "Stacked barchart (relative)", do_plot_output("barChartExpanded"),
-                                               do_create_download_button("downloadBarChartExpanded")),
+                "Stacked barchart (relative)", do_plot_output(ns("barChartExpanded")),
+                                               do_create_download_button(ns("downloadBarChartExpanded"))),
         tabPanel(icon = icon("far fa-chart-line"),
-                "Time series",                 do_plot_output("lineChart"),
-                                               do_create_download_button("downloadLineChart")),
+                "Time series",                 do_plot_output(ns("lineChart")),
+                                               do_create_download_button(ns("downloadLineChart"))),
         tabPanel(icon = icon("far fa-th-large"),
-                "Treemap chart",               do_plot_output("treemapChart"),
-                                               do_create_download_button("downloadTreemapChart")),
+                "Treemap chart",               do_plot_output(ns("treemapChart")),
+                                               do_create_download_button(ns("downloadTreemapChart"))),
         tabPanel(icon = icon("far fa-ship"),
-                "By fleet",                    do_plot_output("paretoChart"),
-                                               do_create_download_button("downloadParetoChart")),
+                "By fleet",                    do_plot_output(ns("paretoChart")),
+                                               do_create_download_button(ns("downloadParetoChart"))),
         tabPanel(icon = icon("list-alt", lib = "glyphicon"),
-                "Dataset",                     do_create_download_button("downloadDataTable",
+                "Dataset",                     do_create_download_button(ns("downloadDataTable"),
                                                                          DOWNLOAD_DATA_BUTTON_TEXT),
-                                               dataTableOutput("table")
+                                               DT::dataTableOutput(ns("table"))
         )
       )
     )
   )
 }
 
-UI_NC_quality = function() {
+UI_NC_quality = function(ns) {
   return(
     tabPanel(
       icon = icon("equalizer", lib = "glyphicon"), "Data quality",
       tabsetPanel(
-        tabPanel("Nominal catch",        do_plot_output("ncQualityChart"),
-                                         do_create_download_button("downloadNCQualityChart")),
-        tabPanel("Vs. Catch-and-Effort", do_plot_output("ceQualityChart"),
-                                         do_create_download_button("downloadCEQualityChart")),
-        tabPanel("Vs. Size-Frequency",   do_plot_output("sfQualityChart"),
-                                         do_create_download_button("downloadSFQualityChart")),
+        tabPanel("Nominal catch",        do_plot_output(ns("ncQualityChart")),
+                                         do_create_download_button(ns("downloadNCQualityChart"))),
+        tabPanel("Vs. Catch-and-Effort", do_plot_output(ns("ceQualityChart")),
+                                         do_create_download_button(ns("downloadCEQualityChart"))),
+        tabPanel("Vs. Size-Frequency",   do_plot_output(ns("sfQualityChart")),
+                                         do_create_download_button(ns("downloadSFQualityChart"))),
         tabPanel(icon = icon("list-alt", lib = "glyphicon"),
-                 "Dataset",              do_create_download_button("downloadDataQualityTable",
+                 "Dataset",              do_create_download_button(ns("downloadDataQualityTable"),
                                                                    DOWNLOAD_DATA_BUTTON_TEXT),
-                                         dataTableOutput("qualityTable")
+                                         dataTableOutput(ns("qualityTable"))
         )
       )
     )
   )
 }
 
-UI_controls_GEO = function() {
+UI_controls_GEO = function(ns) {
   return(
     fluidRow(
       column(
         width = 2,
-        selectizeInput("resolution", "Grid resolution", GRID_RESOLUTIONS, selected = grid_5x5, multiple = FALSE)
+        selectizeInput(ns("resolution"), "Grid resolution", GRID_RESOLUTIONS, selected = grid_5x5, multiple = FALSE)
       ),
       column(
         width = 2,
-        selectizeInput("quadrant", "Quadrant", QUADRANTS, multiple = FALSE)
+        selectizeInput(ns("quadrant"), "Quadrant", QUADRANTS, multiple = FALSE)
       ),
       column(
         width = 2,
-        switchButton("showIO", "Show IOTC sub-areas", value = FALSE, col = "GB", type = "TF")
+        switchButton(ns("showIO"), "Show IOTC sub-areas", value = FALSE, col = "GB", type = "TF")
       ),
       column(
         width = 2,
-        switchButton("showHS", "Show high seas", value = TRUE , col = "GB", type = "TF")
+        switchButton(ns("showHS"), "Show high seas", value = TRUE , col = "GB", type = "TF")
       )
     )
   )
 }
 
-UI_controls_GEO_pie = function() {
+UI_controls_GEO_pie = function(ns) {
   return(
     column(
       width = 3,
-      switchButton("fixSize", "Fixed-size pies"         , value = FALSE, col = "GB", type = "TF"),
-      switchButton("opacity", "Opaque pies"             , value = TRUE , col = "GB", type = "TF"),
-      switchButton("useCenter", "Use exact grid centers", value = TRUE , col = "GB", type = "TF")
+      switchButton(inputId = ns("fixSize"), "Fixed-size pies"         , value = FALSE, col = "GB", type = "TF"),
+      switchButton(inputId = ns("opacity"), "Opaque pies"             , value = TRUE , col = "GB", type = "TF"),
+      switchButton(inputId = ns("useCenter"), "Use exact grid centers", value = TRUE , col = "GB", type = "TF")
     )
   )
 }
 
-UI_GEO = function() {
+UI_GEO = function(ns) {
   return(
     tabPanel(
       icon = icon("globe", lib = "glyphicon"),
       "Georeferenced",
-      UI_controls_GEO(),
+      UI_controls_GEO(ns),
         fluidRow(
           column(
             width = 12,
@@ -474,10 +474,10 @@ UI_GEO = function() {
                 fluidRow(
                   column(
                     width = 9,
-                    plotOutput(height = GEOREF_CHART_HEIGHT, "geoPiemap"),
-                    do_create_download_button("downloadGeoPiemap")
+                    plotOutput(height = GEOREF_CHART_HEIGHT, outputId = ns("geoPiemap")),
+                    do_create_download_button(ns("downloadGeoPiemap"))
                   ),
-                  UI_controls_GEO_pie()
+                  UI_controls_GEO_pie(ns)
                 )
               ),
               tabPanel(
@@ -486,8 +486,8 @@ UI_GEO = function() {
                 fluidRow(
                   column(
                     width = 9,
-                    plotOutput(height = GEOREF_CHART_HEIGHT, "geoHeatmap"),
-                    do_create_download_button("downloadGeoHeatmap")
+                    plotOutput(height = GEOREF_CHART_HEIGHT, ns("geoHeatmap")),
+                    do_create_download_button(ns("downloadGeoHeatmap"))
                   ),
                   column(
                     width = 3
@@ -501,54 +501,54 @@ UI_GEO = function() {
     )
 }
 
-UI_size_distribution = function() {
+UI_size_distribution = function(ns) {
   tabPanel(
     icon = icon("chart-area"),
     "Size distribution",
     fluidRow(
       column(
         width = 3,
-        sliderInput("numColumns", "Number of columns",
+        sliderInput(ns("numColumns"), "Number of columns",
                     width = "100%",
                     min = 1, max = SD_NUM_COLS, value = SD_NUM_COLS,
                     step = 1, ticks = FALSE)
       ),
       column(
         width = 3,
-        switchButton("showSampleProportion", "Show relative sample proportion", value = FALSE, col = "GB", type = "TF")
+        switchButton(ns("showSampleProportion"), "Show relative sample proportion", value = FALSE, col = "GB", type = "TF")
       ),
       column(
         width = 3,
-        switchButton("showMedian", "Show median", value = TRUE, col = "GB", type = "TF")
+        switchButton(ns("showMedian"), "Show median", value = TRUE, col = "GB", type = "TF")
       ),
       column(
         width = 3,
-        switchButton("showMean", "Show mean", value = FALSE, col = "GB", type = "TF")
+        switchButton(ns("showMean"), "Show mean", value = FALSE, col = "GB", type = "TF")
       )
     ),
     fluidRow(
       column(
         width = 12,
-        plotOutput(inline=TRUE, "sizeDistribution")
+        plotOutput(inline=TRUE, ns("sizeDistribution"))
       )
     ),
     fluidRow(
       column(
         width = 12,
-        do_create_download_button("downloadSizeDistribution")
+        do_create_download_button(ns("downloadSizeDistribution"))
       )
     )
   )
 }
 
-UI_samples_by_size = function() {
+UI_samples_by_size = function(ns) {
   tabPanel(
     icon = icon("far fa-chart-bar"),
     "Samples by size",
     fluidRow(
       column(
         width = 3,
-        selectInput("sizeBin", "Bin size",
+        selectInput(ns("sizeBin"), "Bin size",
                     c("1 cm" = 1,
                       "2 cm" = 2,
                       "5 cm" = 5,
@@ -561,17 +561,17 @@ UI_samples_by_size = function() {
         width = 12,
         tabsetPanel(
           tabPanel(icon = icon("far fa-chart-bar"), "Stacked barchart",
-                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, "samplesBySizeBar"),
-                   do_create_download_button("downloadSamplesBySizeBar")),
+                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeBar")),
+                   do_create_download_button(ns("downloadSamplesBySizeBar"))),
           tabPanel(icon = icon("far fa-chart-bar"), "Stacked barchart (relative)",
-                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, "samplesBySizeBarRel"),
-                   do_create_download_button("downloadSamplesBySizeBarRel")),
+                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeBarRel")),
+                   do_create_download_button(ns("downloadSamplesBySizeBarRel"))),
           tabPanel(icon = icon("far fa-chart-line"), "Line chart",
-                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, "samplesBySizeLine"),
-                   do_create_download_button("downloadSamplesBySizeLine")),
+                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeLine")),
+                   do_create_download_button(ns("downloadSamplesBySizeLine"))),
           tabPanel(icon = icon("far fa-chart-line"), "Line chart (relative)",
-                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, "samplesBySizeLineRel"),
-                   do_create_download_button("downloadSamplesBySizeLineRel"))
+                   plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeLineRel")),
+                   do_create_download_button(ns("downloadSamplesBySizeLineRel")))
         )
       )
     )
