@@ -12,8 +12,4 @@ initialize_CA_reference_data = function(data) {
   return(ref)
 }
 
-update_data = function(ref, data) {
-  return(data)
-}
-
 print("LOADED CA_initialization.R")

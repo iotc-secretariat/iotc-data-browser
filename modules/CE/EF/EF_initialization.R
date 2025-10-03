@@ -18,7 +18,6 @@ initialize_EF_reference_data = function(data) {
 
 update_data = function(ref, data) {
   all_effort_units  = iotc.data.reference.codelists::LEGACY_EFFORT_UNITS_IOTDB[CODE %in% unique(data$EFFORT_UNIT_CODE)][, .(EFFORT_UNIT_CODE = CODE, EFFORT_UNIT = NAME_EN)]
-  
   data = merge(data, all_effort_units, by = "EFFORT_UNIT_CODE")
 }
 
