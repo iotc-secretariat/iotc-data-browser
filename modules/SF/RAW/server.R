@@ -70,6 +70,7 @@ sf_raw_server <- function(id, activated){
     })
     
     observe({
+      req(activated())
       selected_measure_type = input$unit
       selected_size_bin = input$sizeBin
       
