@@ -46,7 +46,12 @@ prepare_NC_handlers = function(current_data, data_quality, input, output, prefix
   
   # Output tables
 
-  output$qualityTable = { renderDataTable(options = list(pageLength = 10), dataTable_quality()) }
+  output$qualityTable = {
+    DT::renderDataTable(
+      server = TRUE,
+      dataTable_quality()
+    ) 
+  }
   
   # Output plots
    
