@@ -34,8 +34,8 @@ sf_std_server <- function(id, activated){
       source("./modules/SF/STD/SF_STD_configuration.R")
       source("./modules/SF/STD/SF_STD_extras.R")
       react_ref(initialize_SF_reference_data(current_data))
-      react_data(update_data(react_ref(), current_data))
-      react_data_table(update_data(react_ref(), current_data_table))
+      react_data(update_data(react_ref(), current_data));rm(current_data)
+      react_data_table(update_data(react_ref(), current_data_table));rm(current_data_table)
       
       common_prepare_handlers(
         current_data = react_data(), 

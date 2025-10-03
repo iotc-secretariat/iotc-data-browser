@@ -37,8 +37,8 @@ sf_raw_server <- function(id, activated){
       react_ref(initialize_SF_reference_data(current_data))
       current_data = update_data(react_ref(), current_data)
       current_data_table = update_data(react_ref(), current_data_table)
-      react_data(current_data)
-      react_data_table(current_data_table)
+      react_data(current_data);rm(current_data)
+      react_data_table(current_data_table);rm(current_data_table)
       
       common_prepare_handlers(
         current_data = react_data(), 
