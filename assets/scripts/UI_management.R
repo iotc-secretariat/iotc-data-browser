@@ -378,19 +378,19 @@ UI_summary_default = function(ns) {
       icon = icon("stats", lib = "glyphicon"),
       "Summary",
       tabsetPanel(
-        tabPanel(icon = icon("far fa-chart-bar"),
+        tabPanel(icon = icon("fas fa-chart-bar"),
                 "Stacked barchart",            do_plot_output(ns("barChart")),
                                                do_create_download_button(ns("downloadBarChart"))),
-        tabPanel(icon = icon("far fa-chart-bar"),
+        tabPanel(icon = icon("fas fa-chart-bar"),
                 "Stacked barchart (relative)", do_plot_output(ns("barChartExpanded")),
                                                do_create_download_button(ns("downloadBarChartExpanded"))),
-        tabPanel(icon = icon("far fa-chart-line"),
+        tabPanel(icon = icon("fas fa-chart-line"),
                 "Time series",                 do_plot_output(ns("lineChart")),
                                                do_create_download_button(ns("downloadLineChart"))),
-        tabPanel(icon = icon("far fa-th-large"),
+        tabPanel(icon = icon("fas fa-th-large"),
                 "Treemap chart",               do_plot_output(ns("treemapChart")),
                                                do_create_download_button(ns("downloadTreemapChart"))),
-        tabPanel(icon = icon("far fa-ship"),
+        tabPanel(icon = icon("fas fa-ship"),
                 "By fleet",                    do_plot_output(ns("paretoChart")),
                                                do_create_download_button(ns("downloadParetoChart"))),
         tabPanel(icon = icon("list-alt", lib = "glyphicon"),
@@ -469,7 +469,7 @@ UI_GEO = function(ns) {
             width = 12,
             tabsetPanel(
               tabPanel(
-                icon = icon("far fa-chart-pie"),
+                icon = icon("fas fa-chart-pie"),
                 "Piemap",
                 fluidRow(
                   column(
@@ -543,7 +543,7 @@ UI_size_distribution = function(ns) {
 
 UI_samples_by_size = function(ns) {
   tabPanel(
-    icon = icon("far fa-chart-bar"),
+    icon = icon("fas fa-chart-bar"),
     "Samples by size",
     fluidRow(
       column(
@@ -560,16 +560,16 @@ UI_samples_by_size = function(ns) {
       column(
         width = 12,
         tabsetPanel(
-          tabPanel(icon = icon("far fa-chart-bar"), "Stacked barchart",
+          tabPanel(icon = icon("fas fa-chart-bar"), "Stacked barchart",
                    plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeBar")),
                    do_create_download_button(ns("downloadSamplesBySizeBar"))),
-          tabPanel(icon = icon("far fa-chart-bar"), "Stacked barchart (relative)",
+          tabPanel(icon = icon("fas fa-chart-bar"), "Stacked barchart (relative)",
                    plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeBarRel")),
                    do_create_download_button(ns("downloadSamplesBySizeBarRel"))),
-          tabPanel(icon = icon("far fa-chart-line"), "Line chart",
+          tabPanel(icon = icon("fas fa-chart-line"), "Line chart",
                    plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeLine")),
                    do_create_download_button(ns("downloadSamplesBySizeLine"))),
-          tabPanel(icon = icon("far fa-chart-line"), "Line chart (relative)",
+          tabPanel(icon = icon("fas fa-chart-line"), "Line chart (relative)",
                    plotOutput(height = SIZE_LINE_CHART_HEIGHT, ns("samplesBySizeLineRel")),
                    do_create_download_button(ns("downloadSamplesBySizeLineRel")))
         )
