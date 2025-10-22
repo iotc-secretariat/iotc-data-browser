@@ -221,8 +221,7 @@
       "Description": "Provides color schemes for maps (and other graphics) designed by Cynthia Brewer as described at http://colorbrewer2.org.",
       "License": "Apache License 2.0",
       "NeedsCompilation": "no",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
+      "Repository": "CRAN"
     },
     "RPostgres": {
       "Package": "RPostgres",
@@ -333,8 +332,7 @@
       "NeedsCompilation": "yes",
       "Author": "Dirk Eddelbuettel [aut, cre] (<https://orcid.org/0000-0001-6419-907X>), Mark Gillard [aut] (Author of 'toml++' header library)",
       "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
+      "Repository": "CRAN"
     },
     "S7": {
       "Package": "S7",
@@ -417,8 +415,7 @@
       "License": "GPL-2 | GPL-3",
       "URL": "http://www.rforge.net/base64enc",
       "NeedsCompilation": "yes",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
+      "Repository": "CRAN"
     },
     "bit": {
       "Package": "bit",
@@ -1817,13 +1814,17 @@
     },
     "hms": {
       "Package": "hms",
-      "Version": "1.1.3",
+      "Version": "1.1.4",
       "Source": "Repository",
       "Title": "Pretty Time of Day",
-      "Date": "2023-03-21",
-      "Authors@R": "c( person(\"Kirill\", \"Müller\", role = c(\"aut\", \"cre\"), email = \"kirill@cynkra.com\", comment = c(ORCID = \"0000-0002-1416-3412\")), person(\"R Consortium\", role = \"fnd\"), person(\"RStudio\", role = \"fnd\") )",
+      "Date": "2025-10-11",
+      "Authors@R": "c( person(\"Kirill\", \"Müller\", , \"kirill@cynkra.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-1416-3412\")), person(\"R Consortium\", role = \"fnd\"), person(\"Posit Software, PBC\", role = \"fnd\", comment = c(ROR = \"03wc8by49\")) )",
       "Description": "Implements an S3 class for storing and formatting time-of-day values, based on the 'difftime' class.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://hms.tidyverse.org/, https://github.com/tidyverse/hms",
+      "BugReports": "https://github.com/tidyverse/hms/issues",
       "Imports": [
+        "cli",
         "lifecycle",
         "methods",
         "pkgconfig",
@@ -1836,19 +1837,14 @@
         "pillar (>= 1.1.0)",
         "testthat (>= 3.0.0)"
       ],
-      "License": "MIT + file LICENSE",
-      "Encoding": "UTF-8",
-      "URL": "https://hms.tidyverse.org/, https://github.com/tidyverse/hms",
-      "BugReports": "https://github.com/tidyverse/hms/issues",
-      "RoxygenNote": "7.2.3",
-      "Config/testthat/edition": "3",
-      "Config/autostyle/scope": "line_breaks",
-      "Config/autostyle/strict": "false",
       "Config/Needs/website": "tidyverse/tidytemplate",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3.9000",
       "NeedsCompilation": "no",
-      "Author": "Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>), R Consortium [fnd], RStudio [fnd]",
+      "Author": "Kirill Müller [aut, cre] (ORCID: <https://orcid.org/0000-0002-1416-3412>), R Consortium [fnd], Posit Software, PBC [fnd] (ROR: <https://ror.org/03wc8by49>)",
       "Maintainer": "Kirill Müller <kirill@cynkra.com>",
-      "Repository": "RSPM"
+      "Repository": "CRAN"
     },
     "htmltools": {
       "Package": "htmltools",
@@ -1978,6 +1974,7 @@
       "Description": "Various functions and constants providing access to several IOTC datasets in their raw or official form, including: Nominal catches         (IOTDB.meta / V_LEGACY_NC_raw + V_LEGACY_NC_off) Geo-referenced efforts  (IOTDB.meta / V_LEGACY_EF_raw + V_LEGACY_EF_off) Geo-referenced catches  (IOTDB.meta / V_LEGACY_CA_raw + V_LEGACY_CA_off) Catch-and-effort        (IOTDB.meta / V_LEGACY_CE_raw + V_LEGACY_CE_off) Raw size-frequencies    (IOTDB.meta / V_LEGACY_SF_raw + V_LEGACY_SF_off) Disaggregated nominal catches (IOTDB / est_NCDissag) Harmonized SF data      (IOTDB / vwSF<species>, for ALB, BET, SKJ, YFT, All billfish, BLM, BUM, MLS, SFA, SWO, All neritics, All sharks) The 'official' form replaces the flag country + reporting country codes with a fleet code as defined by IOTDB / CountryStratVsFleet table etc. [ ADD SOME MORE SPECS ON THE HARMONIZED SPECIES TABLE AND SIMILAR ]",
       "License": "Private",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "RoxygenNote": "7.2.3",
       "Depends": [
         "DBI",
@@ -1995,8 +1992,7 @@
       "RemoteRepo": "iotc-lib-base-common-data",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "e12bfb27033bee28420780ed9e90554fc256fd94",
-      "NeedsCompilation": "no"
+      "RemoteSha": "e12bfb27033bee28420780ed9e90554fc256fd94"
     },
     "iotc.base.common.plots": {
       "Package": "iotc.base.common.plots",
@@ -2004,11 +2000,12 @@
       "Source": "GitHub",
       "Type": "Package",
       "Title": "IOTC base functions for common data plotting and visualization",
-      "Author": "Fabio Fiorellato <fabio.fiorellato@fao.org>",
+      "Author": "IOTC Secretariat <IOTC-Secretariat@fao.org>",
       "Maintainer": "IOTC Secretariat <IOTC-Statistics@fao.org>",
       "Description": "Provides convenience methods to ensure standardised plots for all IOTC working party-related charts, including: Catch time-series as stacked bar charts Catch time-series as line charts, etc. Geospatial maps (superimposed pie charts, heatmaps etc.) [ ADD SOME MORE SPECS ]",
       "License": "Private",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "RoxygenNote": "7.3.2",
       "Depends": [
         "dplyr",
@@ -2025,12 +2022,11 @@
         "iotc.data.reference.codelists"
       ],
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "iotc-lib-base-common-plots",
       "RemoteUsername": "iotc-secretariat",
+      "RemoteRepo": "iotc-lib-base-common-plots",
       "RemoteRef": "HEAD",
-      "RemoteSha": "2e0a4b5a122674c643e30396c5493f7e718735e8",
-      "NeedsCompilation": "no"
+      "RemoteSha": "deca328dbcabe47f0e359356ae6a7ea761d2e679",
+      "RemoteHost": "api.github.com"
     },
     "iotc.core.db.connections": {
       "Package": "iotc.core.db.connections",
@@ -2043,6 +2039,7 @@
       "Description": "Provides convenience methods to create connections to the most frequently used IOTC databases, including: IOTC_MASTER, IOTDB, IOTCStatistics, RAV_NEW (e-RAV), etc.",
       "License": "Private",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "Depends": [
         "odbc",
         "RPostgres",
@@ -2054,8 +2051,7 @@
       "RemoteRepo": "iotc-lib-core-db-connections",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "d3ec5a2b7c4f3d34c829c76f5e4f1f28d538a091",
-      "NeedsCompilation": "no"
+      "RemoteSha": "d3ec5a2b7c4f3d34c829c76f5e4f1f28d538a091"
     },
     "iotc.core.db.data": {
       "Package": "iotc.core.db.data",
@@ -2068,6 +2064,7 @@
       "Description": "Provides convenience methods to retrieve data from the IOTC databases",
       "License": "Private",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "Depends": [
         "data.table",
         "iotc.core.db.connections (>= 0.2.0)"
@@ -2078,8 +2075,7 @@
       "RemoteRepo": "iotc-lib-core-db-data",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "88bffbe9d43d04131dd824a95b46e1d583e2eac3",
-      "NeedsCompilation": "no"
+      "RemoteSha": "88bffbe9d43d04131dd824a95b46e1d583e2eac3"
     },
     "iotc.core.gis.cwp": {
       "Package": "iotc.core.gis.cwp",
@@ -2092,6 +2088,7 @@
       "Description": "Utility methods for CWP regular grids management (with no spatial data attached)",
       "License": "Private",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "Depends": [
         "stringi",
         "iotc.core.utils.misc (>= 0.2.0)"
@@ -2102,8 +2099,7 @@
       "RemoteRepo": "iotc-lib-core-gis-cwp",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "cde9b7494959512fd8cb44168a3a1f9af66e4536",
-      "NeedsCompilation": "no"
+      "RemoteSha": "cde9b7494959512fd8cb44168a3a1f9af66e4536"
     },
     "iotc.core.gis.cwp.IO": {
       "Package": "iotc.core.gis.cwp.IO",
@@ -2128,8 +2124,7 @@
       "RemoteRepo": "iotc-lib-core-gis-cwp-io",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "0.2.1-standalone",
-      "RemoteSha": "50991992078151350c194af556a9ad29725ed4dd",
-      "NeedsCompilation": "no"
+      "RemoteSha": "50991992078151350c194af556a9ad29725ed4dd"
     },
     "iotc.core.gis.maps": {
       "Package": "iotc.core.gis.maps",
@@ -2142,6 +2137,7 @@
       "Description": "Provides convenience methods to plot a \"standard\" map of the IO  with additional superimposed layers such as grids, high seas, EEZs etc.",
       "License": "Private",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "Depends": [
         "colorspace",
         "maps",
@@ -2158,8 +2154,7 @@
       "RemoteRepo": "iotc-lib-core-gis-maps",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "0.2.1-standalone",
-      "RemoteSha": "24ff5e712ec3bf7845092d1e6317e5aefd3bc4a2",
-      "NeedsCompilation": "no"
+      "RemoteSha": "24ff5e712ec3bf7845092d1e6317e5aefd3bc4a2"
     },
     "iotc.core.gis.wkt": {
       "Package": "iotc.core.gis.wkt",
@@ -2185,8 +2180,7 @@
       "RemoteRepo": "iotc-lib-core-gis-cwp-wkt",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "0.2.1-standalone",
-      "RemoteSha": "a238276fb119081580248809aa2298b5ea77c8d0",
-      "NeedsCompilation": "no"
+      "RemoteSha": "a238276fb119081580248809aa2298b5ea77c8d0"
     },
     "iotc.core.utils.aes": {
       "Package": "iotc.core.utils.aes",
@@ -2275,12 +2269,11 @@
       ],
       "RoxygenNote": "7.2.3",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "iotc-data-reference-codelists",
       "RemoteUsername": "iotc-secretariat",
+      "RemoteRepo": "iotc-data-reference-codelists",
       "RemoteRef": "HEAD",
-      "RemoteSha": "75c760beebd97414af74795ede3dd82e7475b705",
-      "NeedsCompilation": "no"
+      "RemoteSha": "9b374f5e862180591718e8263aa51f818a4aef4b",
+      "RemoteHost": "api.github.com"
     },
     "iotc.data.reference.datasets.CE": {
       "Package": "iotc.data.reference.datasets.CE",
@@ -2303,8 +2296,7 @@
       "RemoteRepo": "iotc-reference-datasets-ce",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "205eaef48a9701b064e389e9763b45589ed79c45",
-      "NeedsCompilation": "no"
+      "RemoteSha": "205eaef48a9701b064e389e9763b45589ed79c45"
     },
     "iotc.data.reference.datasets.NC": {
       "Package": "iotc.data.reference.datasets.NC",
@@ -2323,12 +2315,11 @@
       ],
       "RoxygenNote": "7.3.2",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "iotc-reference-datasets-nc",
       "RemoteUsername": "iotc-secretariat",
+      "RemoteRepo": "iotc-reference-datasets-nc",
       "RemoteRef": "HEAD",
-      "RemoteSha": "5aa469e373b40f452b86350802c37c1e3a29d764",
-      "NeedsCompilation": "no"
+      "RemoteSha": "930852a1050c2951c3b42af299b0162c79c6cf04",
+      "RemoteHost": "api.github.com"
     },
     "iotc.data.reference.datasets.SF.raw": {
       "Package": "iotc.data.reference.datasets.SF.raw",
@@ -2351,8 +2342,7 @@
       "RemoteRepo": "iotc-reference-datasets-sf",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "2250da89a7085c979028fb7cfc610a55ea912280",
-      "NeedsCompilation": "no"
+      "RemoteSha": "2250da89a7085c979028fb7cfc610a55ea912280"
     },
     "iotc.data.reference.datasets.SF.std": {
       "Package": "iotc.data.reference.datasets.SF.std",
@@ -2375,8 +2365,7 @@
       "RemoteRepo": "iotc-reference-datasets-sf-std",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "3b7301f9308f0837b13440e74c872dd29e1f2338",
-      "NeedsCompilation": "no"
+      "RemoteSha": "3b7301f9308f0837b13440e74c872dd29e1f2338"
     },
     "isoband": {
       "Package": "isoband",
@@ -2599,8 +2588,7 @@
         "stats",
         "graphics"
       ],
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
+      "Repository": "CRAN"
     },
     "later": {
       "Package": "later",
@@ -2660,8 +2648,7 @@
       "NeedsCompilation": "yes",
       "Author": "Hadley Wickham [aut, cre], RStudio [cph]",
       "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
+      "Repository": "CRAN"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -3026,7 +3013,7 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.3.3",
+      "Version": "2.3.4",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Toolkit for Encryption, Signatures and Certificates Based on OpenSSL",
@@ -4249,7 +4236,7 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.2.3",
+      "Version": "1.3.1",
       "Source": "Repository",
       "Type": "Package",
       "Title": "System Native Font Finding",
@@ -4272,9 +4259,12 @@
       "Suggests": [
         "covr",
         "farver",
+        "ggplot2",
         "graphics",
         "knitr",
+        "ragg",
         "rmarkdown",
+        "svglite",
         "testthat (>= 2.1.0)"
       ],
       "LinkingTo": [
@@ -4290,7 +4280,7 @@
       "NeedsCompilation": "yes",
       "Author": "Thomas Lin Pedersen [aut, cre] (ORCID: <https://orcid.org/0000-0002-5147-4711>), Jeroen Ooms [aut] (ORCID: <https://orcid.org/0000-0002-4035-0289>), Devon Govett [aut] (Author of font-manager), Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
       "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
-      "Repository": "RSPM"
+      "Repository": "CRAN"
     },
     "tibble": {
       "Package": "tibble",
@@ -4574,12 +4564,12 @@
     },
     "units": {
       "Package": "units",
-      "Version": "0.8-7",
+      "Version": "1.0-0",
       "Source": "Repository",
       "Title": "Measurement Units for R Vectors",
       "Authors@R": "c(person(\"Edzer\", \"Pebesma\", role = c(\"aut\", \"cre\"), email = \"edzer.pebesma@uni-muenster.de\", comment = c(ORCID = \"0000-0001-8049-7069\")), person(\"Thomas\", \"Mailund\", role = \"aut\", email = \"mailund@birc.au.dk\"), person(\"Tomasz\", \"Kalinowski\", role = \"aut\"), person(\"James\", \"Hiebert\", role = \"ctb\"), person(\"Iñaki\", \"Ucar\", role = \"aut\", email = \"iucar@fedoraproject.org\", comment = c(ORCID = \"0000-0001-6403-5550\")), person(\"Thomas Lin\", \"Pedersen\", role = \"ctb\") )",
       "Depends": [
-        "R (>= 3.0.2)"
+        "R (>= 3.5.0)"
       ],
       "Imports": [
         "Rcpp"
@@ -4608,13 +4598,13 @@
       "License": "GPL-2",
       "URL": "https://r-quantities.github.io/units/, https://github.com/r-quantities/units",
       "BugReports": "https://github.com/r-quantities/units/issues",
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "Encoding": "UTF-8",
       "Config/testthat/edition": "3",
       "NeedsCompilation": "yes",
-      "Author": "Edzer Pebesma [aut, cre] (<https://orcid.org/0000-0001-8049-7069>), Thomas Mailund [aut], Tomasz Kalinowski [aut], James Hiebert [ctb], Iñaki Ucar [aut] (<https://orcid.org/0000-0001-6403-5550>), Thomas Lin Pedersen [ctb]",
+      "Author": "Edzer Pebesma [aut, cre] (ORCID: <https://orcid.org/0000-0001-8049-7069>), Thomas Mailund [aut], Tomasz Kalinowski [aut], James Hiebert [ctb], Iñaki Ucar [aut] (ORCID: <https://orcid.org/0000-0001-6403-5550>), Thomas Lin Pedersen [ctb]",
       "Maintainer": "Edzer Pebesma <edzer.pebesma@uni-muenster.de>",
-      "Repository": "RSPM"
+      "Repository": "CRAN"
     },
     "utf8": {
       "Package": "utf8",
@@ -4932,8 +4922,7 @@
       "License": "GPL (>= 2)",
       "Repository": "CRAN",
       "NeedsCompilation": "no",
-      "Author": "David B. Dahl [aut], David Scott [aut, cre], Charles Roosen [aut], Arni Magnusson [aut], Jonathan Swinton [aut], Ajay Shah [ctb], Arne Henningsen [ctb], Benno Puetz [ctb], Bernhard Pfaff [ctb], Claudio Agostinelli [ctb], Claudius Loehnert [ctb], David Mitchell [ctb], David Whiting [ctb], Fernando da Rosa [ctb], Guido Gay [ctb], Guido Schulz [ctb], Ian Fellows [ctb], Jeff Laake [ctb], John Walker [ctb], Jun Yan [ctb], Liviu Andronic [ctb], Markus Loecher [ctb], Martin Gubri [ctb], Matthieu Stigler [ctb], Robert Castelo [ctb], Seth Falcon [ctb], Stefan Edwards [ctb], Sven Garbade [ctb], Uwe Ligges [ctb]",
-      "Encoding": "UTF-8"
+      "Author": "David B. Dahl [aut], David Scott [aut, cre], Charles Roosen [aut], Arni Magnusson [aut], Jonathan Swinton [aut], Ajay Shah [ctb], Arne Henningsen [ctb], Benno Puetz [ctb], Bernhard Pfaff [ctb], Claudio Agostinelli [ctb], Claudius Loehnert [ctb], David Mitchell [ctb], David Whiting [ctb], Fernando da Rosa [ctb], Guido Gay [ctb], Guido Schulz [ctb], Ian Fellows [ctb], Jeff Laake [ctb], John Walker [ctb], Jun Yan [ctb], Liviu Andronic [ctb], Markus Loecher [ctb], Martin Gubri [ctb], Matthieu Stigler [ctb], Robert Castelo [ctb], Seth Falcon [ctb], Stefan Edwards [ctb], Sven Garbade [ctb], Uwe Ligges [ctb]"
     },
     "yaml": {
       "Package": "yaml",
@@ -4952,8 +4941,7 @@
       "URL": "https://github.com/vubiostat/r-yaml/",
       "BugReports": "https://github.com/vubiostat/r-yaml/issues",
       "NeedsCompilation": "yes",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
+      "Repository": "CRAN"
     },
     "yulab.utils": {
       "Package": "yulab.utils",
