@@ -2294,7 +2294,8 @@
       "RemoteRepo": "iotc-reference-datasets-sf-std",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "0538baa7b838484d37713865bfdd8238328f2526"
+      "RemoteSha": "cbe8036a1f8b34263c79ca832b373969f356cbfb",
+      "NeedsCompilation": "no"
     },
     "isoband": {
       "Package": "isoband",
