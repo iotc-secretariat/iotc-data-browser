@@ -18,26 +18,12 @@ sf_raw_server <- function(id, activated){
       source("./modules/SF/SF_extras.R")
       
       react_source_dataset(DATASET_TITLES$SF_RAW)
-      current_data =
-        rbind(
-          iotc.data.reference.datasets.SF.raw::RAW.TROP,
-          iotc.data.reference.datasets.SF.raw::RAW.TEMP,
-          iotc.data.reference.datasets.SF.raw::RAW.BILL,
-          iotc.data.reference.datasets.SF.raw::RAW.NERI,
-          iotc.data.reference.datasets.SF.raw::RAW.SEER,
-          iotc.data.reference.datasets.SF.raw::RAW.TNEI,
-          iotc.data.reference.datasets.SF.raw::RAW.SHRK,
-          iotc.data.reference.datasets.SF.raw::RAW.ETPS,
-          iotc.data.reference.datasets.SF.raw::RAW.OTHR
-        )
-      current_data_table = current_data      [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(current_data),       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
-      current_data       = current_data_table[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(current_data_table), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
-      
+        
       source("./modules/SF/RAW/SF_RAW_configuration.R")
-      react_ref(initialize_SF_reference_data(current_data))
-      react_data(current_data);rm(current_data)
-      react_data_table(current_data_table);rm(current_data_table)
-      
+      react_data_table(iotc.data.reference.datasets.SF.raw::RAW.ALL_AGG)
+      react_data(react_data_table()[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(react_data_table()), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]);
+      react_ref(initialize_SF_reference_data(react_data()))
+
       common_prepare_handlers(
         current_data = react_data(), 
         current_data_table = react_data_table(), 
@@ -52,7 +38,7 @@ sf_raw_server <- function(id, activated){
         input = input, 
         output = output, 
         prefix = "SF_RAW",
-        source_dataset = react_source_dataset(),
+       source_dataset = react_source_dataset(),
         last_update = iotc.data.reference.datasets.SF.raw::METADATA$RAW.SF$LAST_UPDATE,
         configuration = current_configuration(react_ref())
       )

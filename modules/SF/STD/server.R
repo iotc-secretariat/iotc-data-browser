@@ -18,24 +18,13 @@ sf_std_server <- function(id, activated){
       
       react_source_dataset(DATASET_TITLES$SF_STD)
       
-      current_data_names = colnames(iotc.data.reference.datasets.SF.std::STD.TROP)
-      current_data_table = rbind(
-        iotc.data.reference.datasets.SF.std::STD.TROP,
-        iotc.data.reference.datasets.SF.std::STD.TEMP,
-        iotc.data.reference.datasets.SF.std::STD.BILL,
-        iotc.data.reference.datasets.SF.std::STD.NERI,
-        iotc.data.reference.datasets.SF.std::STD.SEER,
-        iotc.data.reference.datasets.SF.std::STD.SHRK
-      ) [, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(current_data_names,       c(C_MONTH_START, C_MONTH_END, C_FISH_COUNT))]
-      current_data       = current_data_table[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(current_data_table), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]
-      
       DEFAULT_MEASURE_TYPE = "FL"
       
       source("./modules/SF/STD/SF_STD_configuration.R")
       source("./modules/SF/STD/SF_STD_extras.R")
-      react_ref(initialize_SF_reference_data(current_data))
-      react_data(current_data);rm(current_data)
-      react_data_table(current_data_table);rm(current_data_table)
+      react_data_table(iotc.data.reference.datasets.SF.std::STD.ALL_AGG)
+      react_data(react_data_table()[, .(FISH_COUNT = sum(FISH_COUNT)), keyby = setdiff(names(react_data_table()), c(C_CLASS_LOW, C_CLASS_HIGH, C_FISH_COUNT))]);
+      react_ref(initialize_SF_reference_data(react_data()))
       
       common_prepare_handlers(
         current_data = react_data(), 

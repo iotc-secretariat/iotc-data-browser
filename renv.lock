@@ -2330,7 +2330,7 @@
     },
     "iotc.data.reference.datasets.SF.raw": {
       "Package": "iotc.data.reference.datasets.SF.raw",
-      "Version": "2024.02.16",
+      "Version": "2026.09.11",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "All official IOTC SF datasets",
@@ -2343,17 +2343,18 @@
       "Depends": [
         "R (>= 3.5)"
       ],
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-reference-datasets-sf",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "a3f3b236b88f8b16fe1c91eea8371a24d35b6090"
+      "RemoteSha": "e6a2d718067a9f7d07dceb51d8daf08d9fb51467",
+      "NeedsCompilation": "no"
     },
     "iotc.data.reference.datasets.SF.std": {
       "Package": "iotc.data.reference.datasets.SF.std",
-      "Version": "2024.02.16",
+      "Version": "2026-09-11",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "All official IOTC SF standardized datasets",
@@ -2366,13 +2367,14 @@
       "Depends": [
         "R (>= 3.5)"
       ],
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-reference-datasets-sf-std",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "cbe8036a1f8b34263c79ca832b373969f356cbfb"
+      "RemoteSha": "e45250baf66a27a11907060c7e5c45e7b7f9c607",
+      "NeedsCompilation": "no"
     },
     "isoband": {
       "Package": "isoband",
