@@ -8,7 +8,7 @@ SOURCE_DATASET = "< to be specified >"
 
 VALUE_COLUMN           = C_CATCH
 TIME_COLUMN            = C_YEAR
-PARETO_CATEGORY_COLUMN = C_FLEET
+PARETO_CATEGORY_COLUMN = C_FLEET_CODE
 
 SCALE = 1000
 
@@ -53,29 +53,11 @@ filter_data = function(NC_data, input_filters) {
 
 rearrange_data = function(NC_data, include_descriptions = TRUE) {
   if(include_descriptions) {
+    NC_data$QUARTER = NULL
+    NC_data$FATE_TYPE_CODE = NULL
+    NC_data$FATE_CODE = NULL
     return(
-      NC_data[, .(YEAR,
-                  FISHING_GROUND_CODE, FISHING_GROUND,
-                  FLEET_CODE, FLEET,
-                  FISHERY_TYPE_CODE, FISHERY_TYPE,
-                  FISHERY_GROUP_CODE, FISHERY_GROUP,
-                  FISHERY_CODE, FISHERY,
-                  GEAR_CODE, GEAR,
-                  IUCN_STATUS_CODE, IUCN_STATUS,
-                  SPECIES_WP_CODE, SPECIES_WP,
-                  SPECIES_GROUP_CODE, SPECIES_GROUP,
-                  SPECIES_CATEGORY_CODE, SPECIES_CATEGORY,
-                  SPECIES_CODE, SPECIES,
-                  SPECIES_SCIENTIFIC,
-                  SPECIES_FAMILY,
-                  SPECIES_ORDER,
-                  IS_IOTC_SPECIES,
-                  IS_SPECIES_AGGREGATE,
-                  IS_SSI,
-                  #FATE_TYPE_CODE, FATE_TYPE,
-                  #FATE_CODE, FATE,
-                  CATCH, CATCH_UNIT_CODE)
-      ]
+      enrich_data_table_with_descriptions(NC_data)
     )
   } else {
     return(
@@ -91,14 +73,6 @@ rearrange_data = function(NC_data, include_descriptions = TRUE) {
                   SPECIES_GROUP_CODE,
                   SPECIES_CATEGORY_CODE,
                   SPECIES_CODE,
-                  #SPECIES_SCIENTIFIC,
-                  #SPECIES_FAMILY,
-                  #SPECIES_ORDER,
-                  IS_IOTC_SPECIES,
-                  IS_SPECIES_AGGREGATE,
-                  IS_SSI,
-                  #FATE_TYPE_CODE,
-                  #FATE_CODE,
                   CATCH, CATCH_UNIT_CODE)
       ]
     )
@@ -128,32 +102,12 @@ filter_data_quality = function(NC_data_quality, input_filters) {
 }
 
 rearrange_data_quality = function(NC_data_quality, include_descriptions = TRUE) {
+  NC_data_quality$QUARTER = NULL
+  NC_data_quality$FATE_TYPE_CODE = NULL
+  NC_data_quality$FATE_CODE = NULL
   if(include_descriptions) {
     return(
-      NC_data_quality[, .(YEAR,
-                          FLEET_CODE, FLEET,
-                          FISHERY_TYPE_CODE, FISHERY_TYPE,
-                          FISHERY_GROUP_CODE, FISHERY_GROUP,
-                          FISHERY_CODE, FISHERY,
-                          GEAR_CODE, GEAR,
-                          IUCN_STATUS_CODE, IUCN_STATUS,
-                          SPECIES_WP_CODE, SPECIES_WP,
-                          SPECIES_GROUP_CODE, SPECIES_GROUP,
-                          SPECIES_CATEGORY_CODE, SPECIES_CATEGORY,
-                          SPECIES_CODE, SPECIES,
-                          SPECIES_SCIENTIFIC,
-                          SPECIES_FAMILY,
-                          SPECIES_ORDER,
-                          IS_IOTC_SPECIES,
-                          IS_SPECIES_AGGREGATE,
-                          IS_SSI,
-                          #FATE_TYPE_CODE, FATE_TYPE,
-                          #FATE_CODE, FATE,
-                          CATCH, CATCH_UNIT_CODE = "MT",
-                          Q_NC = NC,
-                          Q_CE = CE,
-                          Q_SF = SF)
-      ]
+      enrich_data_table_with_descriptions(NC_data_quality)
     )
   } else {
     return(
@@ -168,14 +122,6 @@ rearrange_data_quality = function(NC_data_quality, include_descriptions = TRUE) 
                           SPECIES_GROUP_CODE,
                           SPECIES_CATEGORY_CODE,
                           SPECIES_CODE,
-                          #SPECIES_SCIENTIFIC,
-                          #SPECIES_FAMILY,
-                          #SPECIES_ORDER,
-                          IS_IOTC_SPECIES,
-                          IS_SPECIES_AGGREGATE,
-                          IS_SSI,
-                          #FATE_TYPE_CODE,
-                          #FATE_CODE,
                           CATCH, CATCH_UNIT_CODE = "MT",
                           Q_NC = NC,
                           Q_CE = CE,

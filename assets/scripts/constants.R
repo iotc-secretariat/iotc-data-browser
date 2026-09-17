@@ -48,22 +48,22 @@ QUARTERS = c("Q1 - Jan - Mar" = "Q1",
 
 QUARTER_CATEGORY = list("Quarter" = C_QUARTER)
 
-EFFORT_CATEGORIES  = list("Fishery type"    = C_FISHERY_TYPE,
-                          "Fishery group"   = C_FISHERY_GROUP,
-                          "Fishery"         = C_FISHERY,
-                          "Gear"            = C_GEAR,
-                          "Fleet"           = C_FLEET)
+EFFORT_CATEGORIES  = list("Fishery type"    = C_FISHERY_TYPE_CODE,
+                          "Fishery group"   = C_FISHERY_GROUP_CODE,
+                          "Fishery"         = C_FISHERY_CODE,
+                          "Gear"            = C_GEAR_CODE,
+                          "Fleet"           = C_FLEET_CODE)
 
 CATCH_CATEGORIES = append(copy(EFFORT_CATEGORIES),
-                          list("Species IUCN status"   = C_IUCN_STATUS,
-                               "Species working party" = C_SPECIES_WP,
-                               "Species group"         = C_SPECIES_GROUP,
-                               "Species category"      = C_SPECIES_CATEGORY,
-                               "Species"               = C_SPECIES))
+                          list("Species IUCN status"   = C_IUCN_STATUS_CODE,
+                               "Species working party" = C_SPECIES_WP_CODE,
+                               "Species group"         = C_SPECIES_GROUP_CODE,
+                               "Species category"      = C_SPECIES_CATEGORY_CODE,
+                               "Species"               = C_SPECIES_CODE))
 
 SIZE_CATEGORIES = append(list("Raising type" = C_RAISING), CATCH_CATEGORIES)
 
-NOMINAL_CATCH_CATEGORIES = list("IO major area" = C_FISHING_GROUND)
+NOMINAL_CATCH_CATEGORIES = list("IO major area" = C_FISHING_GROUND_CODE)
 NOMINAL_CATCH_CATEGORIES = append(NOMINAL_CATCH_CATEGORIES, CATCH_CATEGORIES)
 
 EFFORT_CATEGORIES = append(QUARTER_CATEGORY, EFFORT_CATEGORIES)

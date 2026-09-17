@@ -15,21 +15,25 @@ initialize_reference_data = function(data) {
   FLEETS  = setNames(as.character(fleets$CODE), paste(fleets$CODE, "-", fleets$NAME_EN))
 
   fishery_type_codes = unique(data$FISHERY_TYPE_CODE)
-  fishery_types      = unique(paste(data$FISHERY_TYPE_CODE, "-", data$FISHERY_TYPE))
-  FISHERY_TYPES      = sort(setNames(as.character(fishery_type_codes), fishery_types))
-
+  fishery_types = iotc.data.reference.codelists::LEGACY_FISHERY_TYPES_IOTDB[order(SORT)]
+  fishery_types = fishery_types[fishery_types$CODE %in% fishery_type_codes,]
+  FISHERY_TYPES      = sort(setNames(as.character(fishery_types$CODE), nm = paste(fishery_types$CODE, "-", fishery_types$NAME_EN)))
+  
   fishery_group_codes = unique(data$FISHERY_GROUP_CODE)
-  fishery_groups      = unique(paste(data$FISHERY_GROUP_CODE, "-", data$FISHERY_GROUP))
-  FISHERY_GROUPS      = sort(setNames(as.character(fishery_group_codes), fishery_groups))
-
+  fishery_groups = iotc.data.reference.codelists::LEGACY_FISHERY_GROUPS_IOTDB[order(SORT)]
+  fishery_groups = fishery_groups[fishery_groups$CODE %in% fishery_group_codes,]
+  FISHERY_GROUPS      = sort(setNames(as.character(fishery_groups$CODE), nm = paste(fishery_groups$CODE, "-", fishery_groups$NAME_EN)))
+  
   fishery_codes = unique(data$FISHERY_CODE)
-  fisheries     = unique(paste(data$FISHERY_CODE, "-", data$FISHERY))
-  FISHERIES     = sort(setNames(as.character(fishery_codes), fisheries))
-
+  fisheries = iotc.data.reference.codelists::LEGACY_FISHERIES_IOTDB[order(SORT)]
+  fisheries = fisheries[fisheries$CODE %in% fishery_codes,]
+  FISHERIES     = sort(setNames(as.character(fisheries$CODE), nm = paste(fisheries$CODE,"-",fisheries$NAME_EN)))
+  
   gear_codes = unique(data$GEAR_CODE)
-  gears      = unique(paste(data$GEAR_CODE, "-", data$GEAR))
-  GEARS      = sort(setNames(as.character(gear_codes), gears))
-
+  gears = iotc.data.reference.codelists::LEGACY_GEARS_IOTDB[order(SORT)]
+  gears = gears[gears$CODE %in% gear_codes,]
+  GEARS      = sort(setNames(as.character(gears$CODE), nm = paste(gears$CODE,"-",gears$NAME_EN)))
+  
   SPECIES_WPS        = NA
   SPECIES_GROUPS     = NA
   SPECIES_CATEGORIES = NA
@@ -38,32 +42,40 @@ initialize_reference_data = function(data) {
 
   if(is_available(which(colnames(data) == C_IUCN_STATUS_CODE))) {
     IUCN_status_codes = unique(data$IUCN_STATUS_CODE)
-    IUCN_status       = unique(paste(data$IUCN_STATUS_CODE, "-", data$IUCN_STATUS))
-    IUCN_STATUS       = sort(setNames(as.character(IUCN_status_codes), IUCN_status))
+    IUCN_status = iotc.data.reference.codelists::LEGACY_IUCN_STATUS_IOTDB[order(SORT)]
+    IUCN_status = IUCN_status[IUCN_status$CODE %in% IUCN_status_codes,]
+    IUCN_STATUS       = sort(setNames(as.character(IUCN_status$CODE), nm = paste(IUCN_status$CODE, "-", IUCN_status$NAME_EN)))
   }
 
   if(is_available(which(colnames(data) == C_SPECIES_WP_CODE))) {
     species_WP_codes = unique(data$SPECIES_WP_CODE)
-    species_WPs      = unique(paste(data$SPECIES_WP_CODE, "-", data$SPECIES_WP))
-    SPECIES_WPS      = sort(setNames(as.character(species_WP_codes), species_WPs))
+    species_WPs = iotc.data.reference.codelists::LEGACY_WORKING_PARTIES_IOTDB[order(SORT)]
+    species_WPs = species_WPs[species_WPs$CODE %in% species_WP_codes,]
+    SPECIES_WPS = sort(setNames(as.character(species_WPs$CODE), nm = paste(species_WPs$CODE, "-", species_WPs$NAME_EN)))
   }
 
   if(is_available(which(colnames(data) == C_SPECIES_GROUP_CODE))) {
     species_group_codes = unique(data$SPECIES_GROUP_CODE)
-    species_groups      = unique(paste(data$SPECIES_GROUP_CODE, "-", data$SPECIES_GROUP))
-    SPECIES_GROUPS      = sort(setNames(as.character(species_group_codes), species_groups))
+    species_groups = iotc.data.reference.codelists::LEGACY_SPECIES_GROUPS_IOTDB[order(SORT)]
+    species_groups = species_groups[species_groups$CODE %in% species_group_codes,]
+    SPECIES_GROUPS = sort(setNames(as.character(species_groups$CODE), nm = paste(species_groups$CODE, "-", species_groups$NAME_EN)))
   }
 
   if(is_available(which(colnames(data) == C_SPECIES_CATEGORY_CODE))) {
     species_category_codes = unique(data$SPECIES_CATEGORY_CODE)
-    species_categories     = unique(paste(data$SPECIES_CATEGORY_CODE, "-", data$SPECIES_CATEGORY))
-    SPECIES_CATEGORIES     = sort(setNames(as.character(species_category_codes), species_categories))
+    species_categories = iotc.data.reference.codelists::LEGACY_SPECIES_CATEGORIES_IOTDB[order(SORT)]
+    species_categories = species_categories[species_categories$CODE %in% species_category_codes,]
+    SPECIES_CATEGORIES = sort(setNames(as.character(species_categories$CODE), nm = paste(species_categories$CODE,"-",species_categories$NAME_EN)))
   }
 
   if(is_available(which(colnames(data) == C_SPECIES_CODE))) {
     species_codes = unique(data$SPECIES_CODE)
-    species       = unique(paste(data$SPECIES_CODE, "-", data$SPECIES))
-    SPECIES       = sort(setNames(as.character(species_codes), species))
+    species = iotc.data.reference.codelists::LEGACY_SPECIES_IOTDB[order(SORT)]
+    species[, CODE := trimws(CODE)] #species cl to clean
+    species[, NAME_EN := trimws(NAME_EN)] #species cl to clean
+    species = unique(species[,.(CODE, NAME_EN)])
+    species = species[species$CODE %in% species_codes,]
+    SPECIES = sort(setNames(as.character(species$CODE), nm = paste(species$CODE, "-", species$NAME_EN)))
   }
 
   ym = min(data$YEAR)
@@ -105,4 +117,70 @@ filter_data_core = function(all_data,
   if(nrow(data_filtered) == 0) stop("No data identified by current criteria!")
 
   return (data_filtered)
+}
+
+get_codelist_for_term = function(base_name){
+  codelist_name <- switch(base_name,
+         "FISHERY" = "LEGACY_FISHERIES_IOTDB",
+         "IUCN_STATUS" = "LEGACY_IUCN_STATUS_IOTDB",
+         "SPECIES_WP" = "LEGACY_WORKING_PARTIES_IOTDB",
+         "SPECIES_CATEGORY" = "LEGACY_SPECIES_CATEGORIES_IOTDB",
+         "SPECIES" = "LEGACY_SPECIES_IOTDB",
+         "CATCH_UNIT" = "LEGACY_CATCH_UNITS",
+         "FATE" = "LEGACY_FATES",
+         paste0("LEGACY_", base_name, "S_IOTDB")
+  )
+  codelist <- try(get(codelist_name, envir = asNamespace("iotc.data.reference.codelists")), silent = TRUE)
+  if(is(codelist, "try-error")){
+    warning(sprintf("No codelist '%s'", codelist_name))
+  }
+  return(codelist)
+}
+
+enrich_data_table_with_descriptions <- function(dt, code_selection = NULL){
+  
+  code_cols <- grep("_CODE$", names(dt), value = TRUE)
+  if(!is.null(code_selection)) code_cols = code_selection
+  
+  print(code_cols)
+  
+  for (code_col in code_cols) {
+    # Extract the base name
+    base_name <- sub("_CODE$", "", code_col)
+    
+    # Construct codelist name
+    codelist <- get_codelist_for_term(base_name)
+    
+    if(is(codelist, "try-error")){
+      next
+    }
+    
+    label_key = "NAME_EN"
+    if(!code_col %in% names(codelist)) codelist = codelist |> dplyr::rename(!!rlang::sym(code_col) := "CODE")
+    has_sort <- "SORT" %in% names(codelist)
+    select_cols <- c(code_col, "NAME_EN")
+    if(has_sort) select_cols <- c(select_cols, "SORT")
+    codelist = codelist |> dplyr::select(dplyr::all_of(select_cols)) |> unique()
+    
+    dt = dt |> 
+      dplyr::left_join(y = codelist, by = code_col)
+    
+    if(has_sort) {
+      ordered_levels <- codelist |>
+        dplyr::filter(!is.na(NAME_EN)) |>
+        dplyr::arrange(SORT) |>
+        dplyr::pull(NAME_EN) |>
+        unique()
+      
+      dt <- dt |> 
+        dplyr::mutate(!!rlang::sym(base_name) := factor(NAME_EN, levels = ordered_levels)) |>
+        dplyr::select(-NAME_EN, -SORT)
+    } else {
+      dt <- dt |> dplyr::rename(!!rlang::sym(base_name) := "NAME_EN")
+    }
+    
+    dt = dt |>
+      dplyr::relocate(dplyr::all_of(base_name), .after = dplyr::all_of(code_col))
+  }
+  return(dt)
 }

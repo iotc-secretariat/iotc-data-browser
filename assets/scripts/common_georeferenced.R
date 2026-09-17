@@ -31,10 +31,10 @@ pie_geo = function(value, max_categories, category, use_category_colors, resolut
   limits = limits_for_quadrant(quadrant)
   
   return (
-    geo.grid.pie(
-      data = current_data,
+    iotc.base.common.plots::geo.grid.pie(
+      data = enrich_data_table_with_descriptions(current_data, category),
       value = value,
-      fill_by = category,
+      fill_by = sub("_CODE$", "", category),
       colors = custom_colors,
       standard_grid = resolution,
       fixed_radius = pie_size,
@@ -55,8 +55,8 @@ heat_geo = function(value, resolution, quadrant, show_IO, show_HS, current_data,
   limits = limits_for_quadrant(quadrant)
   
   return (
-    geo.grid.heatmap(
-      data = current_data,
+    iotc.base.common.plots::geo.grid.heatmap(
+      data = enrich_data_table_with_descriptions(current_data),
       value = value,
       standard_grid = resolution,
       num_intervals = 10,

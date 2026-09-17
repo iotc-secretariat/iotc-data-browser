@@ -1,7 +1,7 @@
 
 VALUE_COLUMN           = C_EFFORT
 TIME_COLUMN            = C_YEAR
-PARETO_CATEGORY_COLUMN = C_FLEET
+PARETO_CATEGORY_COLUMN = C_FLEET_CODE
 
 SCALE = 1
 
@@ -46,27 +46,16 @@ filter_data = function(EF_data, input_filters) {
 }
 
 rearrange_data = function(EF_data, include_descriptions = TRUE) {
+  EF_data$MONTH_START = NULL
+  EF_data$MONTH_END = NULL
   if(include_descriptions) {
     return(
-      EF_data[, .(YEAR,
-                  QUARTER,
-                  #MONTH_START, MONTH_END,
-                  FISHING_GROUND_CODE,
-                  FLEET_CODE, FLEET,
-                  FISHERY_TYPE_CODE, FISHERY_TYPE,
-                  FISHERY_GROUP_CODE, FISHERY_GROUP,
-                  FISHERY_CODE, FISHERY,
-                  GEAR_CODE, GEAR,
-                  EFFORT_SCHOOL_TYPE_CODE = SCHOOL_TYPE_CODE,
-                  EFFORT,
-                  EFFORT_UNIT_CODE, EFFORT_UNIT)
-      ]
+      enrich_data_table_with_descriptions(EF_data)
     )
   } else {
     return(
       EF_data[, .(YEAR,
                   QUARTER,
-                  #MONTH_START, MONTH_END,
                   FISHING_GROUND_CODE,
                   FLEET_CODE,
                   FISHERY_TYPE_CODE,

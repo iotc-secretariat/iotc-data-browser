@@ -4,7 +4,7 @@ print("LOADING SF_configuration.R")
 
 VALUE_COLUMN           = C_FISH_COUNT
 TIME_COLUMN            = C_YEAR
-PARETO_CATEGORY_COLUMN = C_FLEET
+PARETO_CATEGORY_COLUMN = C_FLEET_CODE
 
 SCALE = 1
 
@@ -64,44 +64,18 @@ filter_data = function(data_SF, input_filters) {
 }
 
 do_rearrange_data = function(data_SF, include_descriptions = TRUE) {
+  data_SF$MONTH_START = NULL
+  data_SF$MONTH_END = NULL
+  data_SF$FATE_TYPE_CODE = NULL
+  data_SF$FATE_CODE = NULL
   if(include_descriptions) {
     return(
-      data_SF[, .(YEAR,
-                  QUARTER,
-                  #MONTH_START, MONTH_END,
-                  FISHING_GROUND_CODE,
-                  FLEET_CODE, FLEET,
-                  FISHERY_TYPE_CODE, FISHERY_TYPE,
-                  FISHERY_GROUP_CODE, FISHERY_GROUP,
-                  FISHERY_CODE, FISHERY,
-                  GEAR_CODE, GEAR,
-                  SCHOOL_TYPE_CODE,
-                  IUCN_STATUS_CODE, IUCN_STATUS,
-                  SPECIES_WP_CODE, SPECIES_WP,
-                  SPECIES_GROUP_CODE, SPECIES_GROUP,
-                  SPECIES_CATEGORY_CODE, SPECIES_CATEGORY,
-                  SPECIES_CODE, SPECIES,
-                  SPECIES_SCIENTIFIC,
-                  SPECIES_FAMILY,
-                  SPECIES_ORDER,
-                  IS_IOTC_SPECIES,
-                  IS_SPECIES_AGGREGATE,
-                  IS_SSI,
-                  #FATE_TYPE_CODE, FATE_TYPE,
-                  #FATE_CODE, FATE
-                  SEX_CODE,
-                  MEASURE_TYPE_CODE,
-                  CLASS_LOW, CLASS_HIGH,
-                  MEASURE_UNIT_CODE,
-                  RAISE_CODE, RAISING,
-                  FISH_COUNT)
-      ]
+      enrich_data_table_with_descriptions(data_SF)
     )
   } else {
     return(
       data_SF[, .(YEAR,
                   QUARTER,
-                  #MONTH_START, MONTH_END,
                   FISHING_GROUND_CODE,
                   FLEET_CODE,
                   FISHERY_TYPE_CODE,
@@ -114,14 +88,6 @@ do_rearrange_data = function(data_SF, include_descriptions = TRUE) {
                   SPECIES_GROUP_CODE,
                   SPECIES_CATEGORY_CODE,
                   SPECIES_CODE,
-                  #SPECIES_SCIENTIFIC,
-                  #SPECIES_FAMILY,
-                  #SPECIES_ORDER,
-                  IS_IOTC_SPECIES,
-                  IS_SPECIES_AGGREGATE,
-                  IS_SSI,
-                  #FATE_TYPE_CODE, FATE_TYPE,
-                  #FATE_CODE, FATE
                   SEX_CODE,
                   MEASURE_TYPE_CODE,
                   CLASS_LOW, CLASS_HIGH,

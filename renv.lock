@@ -2284,7 +2284,7 @@
     },
     "iotc.data.reference.datasets.CE": {
       "Package": "iotc.data.reference.datasets.CE",
-      "Version": "2024.02.16",
+      "Version": "2026.09.17",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "All official IOTC CE datasets",
@@ -2297,17 +2297,18 @@
       "Depends": [
         "R (>= 3.5)"
       ],
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "iotc-reference-datasets-ce",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "7d8bc44641b86ad025929ff7f49329720b243819"
+      "RemoteSha": "6979b54f38ff4515dae08e147aed75e824690efb",
+      "NeedsCompilation": "no"
     },
     "iotc.data.reference.datasets.NC": {
       "Package": "iotc.data.reference.datasets.NC",
-      "Version": "2024.02.16",
+      "Version": "2026.09.17",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "All official IOTC NC datasets",
@@ -2326,11 +2327,12 @@
       "RemoteRepo": "iotc-reference-datasets-nc",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "067972d1fcb6c3e04ae4791eedd3d75d13202e39"
+      "RemoteSha": "d42e2063fbbdfeb392e44dd20413b2134b97b7c6",
+      "NeedsCompilation": "no"
     },
     "iotc.data.reference.datasets.SF.raw": {
       "Package": "iotc.data.reference.datasets.SF.raw",
-      "Version": "2026.09.11",
+      "Version": "2026.09.16",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "All official IOTC SF datasets",
@@ -2349,12 +2351,12 @@
       "RemoteRepo": "iotc-reference-datasets-sf",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "e6a2d718067a9f7d07dceb51d8daf08d9fb51467",
+      "RemoteSha": "d77f35e7e1bef80715a5adb1261a236d0a3f5ee6",
       "NeedsCompilation": "no"
     },
     "iotc.data.reference.datasets.SF.std": {
       "Package": "iotc.data.reference.datasets.SF.std",
-      "Version": "2026-09-11",
+      "Version": "2026.09.16",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "All official IOTC SF standardized datasets",
@@ -2373,7 +2375,7 @@
       "RemoteRepo": "iotc-reference-datasets-sf-std",
       "RemoteUsername": "iotc-secretariat",
       "RemoteRef": "HEAD",
-      "RemoteSha": "e45250baf66a27a11907060c7e5c45e7b7f9c607",
+      "RemoteSha": "5555b780ad2274597a78beede07b66ec82af3f40",
       "NeedsCompilation": "no"
     },
     "isoband": {

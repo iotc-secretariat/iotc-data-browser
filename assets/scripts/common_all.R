@@ -6,13 +6,13 @@ bar_chart = function(value, time, max_categories, category, use_category_colors,
   custom_colors = NA
 
   if(use_category_colors == FALSE) custom_colors = CUSTOM_COLORS
-
+  
   return (
-    bar.value(
-      data = current_data,
+    iotc.base.common.plots::bar.value(
+      data = enrich_data_table_with_descriptions(current_data),
       value = value,
       time = time,
-      fill_by = category,
+      fill_by = sub("_CODE$", "", category),
       max_categories = max_categories,
       colors = custom_colors,
       num_legend_rows =  2,
@@ -27,11 +27,11 @@ bar_chart_expanded = function(value, time, max_categories, category, use_categor
   if(use_category_colors == FALSE) custom_colors = CUSTOM_COLORS
 
   return (
-    bar.value.rel(
-      data = current_data,
+    iotc.base.common.plots::bar.value.rel(
+      data = enrich_data_table_with_descriptions(current_data, category),
       value = value,
       time = time,
-      fill_by = category,
+      fill_by = sub("_CODE$", "", category),
       max_categories = max_categories,
       colors = custom_colors,
       num_legend_rows = 2,
@@ -45,11 +45,11 @@ line_chart = function(value, time, max_categories, category, use_category_colors
   if(use_category_colors == FALSE) custom_colors = CUSTOM_COLORS
 
   return (
-    line.value(
-      data = current_data,
+    iotc.base.common.plots::line.value(
+      data = enrich_data_table_with_descriptions(current_data),
       value = value,
       time = time,
-      color_by = category,
+      color_by = sub("_CODE$", "", category),
       max_categories = max_categories,
       colors = custom_colors,
       num_legend_rows = 2,
@@ -66,10 +66,10 @@ treemap_chart = function(value, max_categories, category, use_category_colors, c
   if(use_category_colors == FALSE) custom_colors = CUSTOM_COLORS
 
   return (
-    treemap.value(
-      data = current_data,
+    iotc.base.common.plots::treemap.value(
+      data = enrich_data_table_with_descriptions(current_data),
       value = value,
-      fill_by = category,
+      fill_by = sub("_CODE$", "", category),
       max_categories = max_categories,
       colors = custom_colors
     )
@@ -82,11 +82,11 @@ pareto_chart = function(value, categorize_by, max_categories, category, use_cate
   if(use_category_colors == FALSE) custom_colors = CUSTOM_COLORS
 
   return (
-    pareto.value(
-      data = current_data,
+    iotc.base.common.plots::pareto.value(
+      data = enrich_data_table_with_descriptions(current_data, c(category, categorize_by)),
       value = value,
-      categorize_by = categorize_by,
-      fill_by = category,
+      categorize_by = sub("_CODE$", "", categorize_by),
+      fill_by = sub("_CODE$", "", category),
       max_categories = 10,                  #To be shown on the X-axis
       max_fill_categories = max_categories, #To be used to colorize the bars
       colors = custom_colors,

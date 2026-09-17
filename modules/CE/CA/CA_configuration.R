@@ -4,7 +4,7 @@ print("LOADING CA_configuration.R")
 
 VALUE_COLUMN           = C_CATCH
 TIME_COLUMN            = C_YEAR
-PARETO_CATEGORY_COLUMN = C_FLEET
+PARETO_CATEGORY_COLUMN = C_FLEET_CODE
 
 SCALE = 1
 
@@ -49,39 +49,18 @@ filter_data = function(CA_data, input_filters) {
 }
 
 rearrange_data = function(CA_data, include_descriptions = TRUE) {
+  CA_data$MONTH_START = NULL
+  CA_data$MONTH_END = NULL
+  CA_data$FATE_TYPE_CODE = NULL
+  CA_data$FATE_CODE = NULL
   if(include_descriptions) {
     return(
-      CA_data[, .(YEAR,
-                  QUARTER,
-                  #MONTH_START, MONTH_END,
-                  FISHING_GROUND_CODE,
-                  FLEET_CODE, FLEET,
-                  FISHERY_TYPE_CODE, FISHERY_TYPE,
-                  FISHERY_GROUP_CODE, FISHERY_GROUP,
-                  FISHERY_CODE, FISHERY,
-                  GEAR_CODE, GEAR,
-                  CATCH_SCHOOL_TYPE_CODE,
-                  IUCN_STATUS_CODE, IUCN_STATUS,
-                  SPECIES_WP_CODE, SPECIES_WP,
-                  SPECIES_GROUP_CODE, SPECIES_GROUP,
-                  SPECIES_CATEGORY_CODE, SPECIES_CATEGORY,
-                  SPECIES_CODE, SPECIES,
-                  SPECIES_SCIENTIFIC,
-                  SPECIES_FAMILY,
-                  SPECIES_ORDER,
-                  IS_IOTC_SPECIES,
-                  IS_SPECIES_AGGREGATE,
-                  IS_SSI,
-                  #FATE_TYPE_CODE, FATE_TYPE,
-                  #FATE_CODE, FATE,
-                  CATCH, CATCH_UNIT_CODE)
-      ]
+      enrich_data_table_with_descriptions(CA_data)
     )
   } else {
     return(
       CA_data[, .(YEAR,
                   QUARTER,
-                  #MONTH_START, MONTH_END,
                   FISHING_GROUND_CODE,
                   FLEET_CODE,
                   FISHERY_TYPE_CODE,
@@ -94,14 +73,6 @@ rearrange_data = function(CA_data, include_descriptions = TRUE) {
                   SPECIES_GROUP_CODE,
                   SPECIES_CATEGORY_CODE,
                   SPECIES_CODE,
-                  #SPECIES_SCIENTIFIC,
-                  #SPECIES_FAMILY,
-                  #SPECIES_ORDER,
-                  IS_IOTC_SPECIES,
-                  IS_SPECIES_AGGREGATE,
-                  IS_SSI,
-                  #FATE_TYPE_CODE,
-                  #FATE_CODE,
                   CATCH, CATCH_UNIT_CODE)
       ]
     )
