@@ -2,15 +2,58 @@ nc_sci_server <- function(id, activated){
   
   moduleServer(id, function(input, output, session) {
     
-    ns = session$ns
+    ns <- session$ns
+    
+    initialized <- FALSE
     
     #reactives
     react_source_dataset <- reactiveVal(NULL)
     react_ref <- reactiveVal(NULL)
-
-    observe({
+    
+    #events
+    handler_events = list()
+    
+    #helpers
+    #destroy_observers
+    destroy_observers <- function(observers) {
+      if (length(observers) == 0L) {
+        return(invisible(NULL))
+      }
       
-      req(activated())
+      for (observer in observers) {
+        if (inherits(observer, "Observer")) {
+          observer$destroy()
+        }
+      }
+      
+      invisible(NULL)
+    }
+    #cleanup_module
+    cleanup_module <- function() {
+      INFO("Cleanup module 'nc-raw'")
+      destroy_observers(handler_events)
+      handler_events <<- list()
+      
+      rm(list = ls()[startsWith(ls(),"reactive_")])
+      
+      # Release references to potentially large objects
+      react_ref(NULL)
+      react_source_dataset(NULL)
+      
+      # Allow the module to be initialized again if it is activated later
+      initialized <<- FALSE
+      
+      invisible(NULL)
+    }
+
+
+    initialize_module <- function() {
+      if (initialized) {
+        WARN("Module 'nc-sci' already initialized")
+        return(invisible(NULL))
+      }
+      INFO("Initialize module 'nc-sci'")
+      initialized <<- TRUE
       
       source("./modules/NC/NC_configuration.R")
       source("./modules/NC/NC_initialization.R")
@@ -27,9 +70,41 @@ nc_sci_server <- function(id, activated){
         last_update = iotc.data.reference.datasets.NC::METADATA$SCI$LAST_UPDATE, 
         configuration = current_configuration(react_ref())
       )
-    })
+      
+      # Protect against helper functions returning NULL
+      if (is.null(handler_events)) {
+        handler_events <<- list()
+      }
+      
+      invisible(NULL)
+    }
+    
+    # -------------------------------------------------------------------------
+    # Activation lifecycle
+    # -------------------------------------------------------------------------
+    
+    # This observer remains for the lifetime of the parent Shiny session.
+    # It controls the child module lifecycle.
+    activation_observer <- observeEvent(
+      activated(),
+      {
+        if (isTRUE(activated())) {
+          initialize_module()
+        } else {
+          cleanup_module()
+          gc()
+        }
+      },
+      ignoreInit = FALSE
+    )
+    
+    # -------------------------------------------------------------------------
+    # Module UI
+    # -------------------------------------------------------------------------
     
     output$nc_sci_ui <- renderUI({
+      req(activated())
+      req(!is.null(react_ref()))
       tagList(
         tags$head(includeHTML(("www/google-analytics.html"))),
         includeCSS("www/css/common.css"),
@@ -53,6 +128,19 @@ nc_sci_server <- function(id, activated){
           "#NC-SCI"
         )
       )
+    })
+    
+    session$onSessionEnded(function() {
+      message("Session ended for NC-SCI module")
+      
+      cleanup_module()
+      
+      # The activation observer is owned by this module session.
+      if (inherits(activation_observer, "Observer")) {
+        activation_observer$destroy()
+      }
+      
+      gc()
     })
     
   })

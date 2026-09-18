@@ -1,15 +1,38 @@
 
 server = function(input, output, session) {
   
-  #model <- reactiveValues(page = "home", load_from_url = TRUE)
-  react_module <- reactiveVal("home")
-  react_resolver <- reactiveVal(TRUE)
-  react_nc_raw_activated <- reactiveVal(FALSE)
-  react_nc_sci_activated <- reactiveVal(FALSE)
-  react_ce_ef_activated <- reactiveVal(FALSE)
-  react_ce_ca_activated <- reactiveVal(FALSE)
-  react_sf_raw_activated <- reactiveVal(FALSE)
-  react_sf_std_activated <- reactiveVal(FALSE)
+  active_module <- reactiveVal("home")
+  resolving_url <- reactiveVal(TRUE)
+  
+  module_names <- c(
+    "home",
+    "nc-raw",
+    "nc-sci",
+    "ce-ef",
+    "ce-ca",
+    "sf-raw",
+    "sf-std"
+  )
+  
+  #is_active
+  is_active <- function(name) {
+    reactive(active_module() == name)
+  }
+  
+  #set_module
+  set_module <- function(name, update_url = TRUE) {
+    if (!name %in% module_names) {
+      name <- "home"
+    }
+    
+    active_module(name)
+    
+    if (update_url) {
+      hash <- if (name == "home") "#" else paste0("#", toupper(name))
+      updateURL(session, hash)
+    }
+  }
+  
   
   homeUI <- function(){
     tagList(
@@ -218,7 +241,7 @@ server = function(input, output, session) {
   
   output$main_ui <- renderUI({
     DEBUG("Render MAIN UI")
-    switch(react_module(),
+    switch(active_module(),
       "home" = {
         homeUI()
       },
@@ -245,69 +268,81 @@ server = function(input, output, session) {
       "sf-std" = {
         INFO("Load load SF-STD module")
         sf_std_ui("sf-std")
-      }
+      },
+      homeUI()
     )
   })
   
   #events to update the model/page
   observeEvent(input$home,{ 
-    react_module("home"); react_resolver(FALSE);
-    updateURL(session, "#") 
+    set_module("home")
   }, ignoreInit = T)
   observeEvent(input$module_nc_raw,{
-    react_module("nc-raw"); react_resolver(FALSE);
-    react_nc_raw_activated(TRUE)
-    updateURL(session, "#NC-RAW")
+    set_module("nc-raw")
   }, ignoreInit = T)
   observeEvent(input$module_nc_sci,{
-    react_module("nc-sci"); react_resolver(FALSE);
-    react_nc_sci_activated(TRUE)
-    updateURL(session, "#NC-SCI")
+    set_module("nc-sci")
   }, ignoreInit = T)
   observeEvent(input$module_ce_ef,{
-    react_module("ce-ef"); react_resolver(FALSE);
-    react_ce_ef_activated(TRUE)
-    updateURL(session, "#CE-EF")
+    set_module("ce-ef")
   }, ignoreInit = T)
   observeEvent(input$module_ce_ca,{
-    react_module("ce-ca"); react_resolver(FALSE);
-    react_ce_ca_activated(TRUE)
-    updateURL(session, "#CE-CA")
+    set_module("ce-ca")
   }, ignoreInit = T)
   observeEvent(input$module_sf_raw,{
-    react_module("sf-raw"); react_resolver(FALSE);
-    react_sf_raw_activated(TRUE)
-    updateURL(session, "#SF-RAW")
+    set_module("sf-raw")
   }, ignoreInit = T)
   observeEvent(input$module_sf_std,{
-    react_module("sf-std"); react_resolver(FALSE);
-    react_sf_std_activated(TRUE)
-    updateURL(session, "#SF-STD")
+    set_module("sf-std")
   }, ignoreInit = T)
   
   #mechanism to load a module page from the URL
   observe({
-    req(react_resolver())
+    req(resolving_url())
     hash = session$clientData$url_hash
     module = NULL
     print(hash)
-    if(hash %in% c("#","")){
-      module = "home"
-    }else{
-      module = tolower(substr(hash, 2, nchar(hash)))
+    module <- if (
+      is.null(hash) ||
+      identical(hash, "") ||
+      identical(hash, "#")
+    ) {
+      "home"
+    } else {
+      tolower(sub("^#", "", hash))
     }
-    if(module != "home"){
-      module_prefix = gsub("-","_", module)
-      eval(parse(text = paste0("react_", module_prefix, "_activated(TRUE)")))
-    }
-    react_module(module)
+    set_module(module, update_url = FALSE)
+    resolving_url(FALSE)
   })
 
   #configure module servers
-  nc_raw_server("nc-raw", react_nc_raw_activated)
-  nc_sci_server("nc-sci", react_nc_sci_activated)
-  ce_ef_server("ce-ef", react_ce_ef_activated)
-  ce_ca_server("ce-ca", react_ce_ca_activated)
-  sf_raw_server("sf-raw", react_sf_raw_activated)
-  sf_std_server("sf-std", react_sf_std_activated)
+  nc_raw_server(
+    id = "nc-raw",
+    activated = is_active("nc-raw")
+  )
+  
+  nc_sci_server(
+    id = "nc-sci",
+    activated = is_active("nc-sci")
+  )
+  
+  ce_ef_server(
+    id = "ce-ef",
+    activated = is_active("ce-ef")
+  )
+  
+  ce_ca_server(
+    id = "ce-ca",
+    activated = is_active("ce-ca")
+  )
+  
+  sf_raw_server(
+    id = "sf-raw",
+    activated = is_active("sf-raw")
+  )
+  
+  sf_std_server(
+    id = "sf-std",
+    activated = is_active("sf-std")
+  )
 }

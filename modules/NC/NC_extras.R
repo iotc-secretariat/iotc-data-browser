@@ -88,4 +88,5 @@ prepare_NC_handlers = function(current_data, data_quality, input, output, prefix
                                                      NO_UNITS,
                                                      NO_CATEGORIES,
                                                      plotSFQualityChart)
+  
 }
