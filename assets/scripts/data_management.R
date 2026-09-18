@@ -128,6 +128,10 @@ get_codelist_for_term = function(base_name){
          "SPECIES" = "LEGACY_SPECIES_IOTDB",
          "CATCH_UNIT" = "LEGACY_CATCH_UNITS",
          "FATE" = "LEGACY_FATES",
+         "SCHOOL_TYPE" = "LEGACY_SCHOOL_TYPES",
+         "MEASURE_UNIT" = "LEGACY_MEASUREMENT_TYPES",
+         "RAISE" = "LEGACY_RAISINGS",
+         "SEX" = "SEX",
          paste0("LEGACY_", base_name, "S_IOTDB")
   )
   codelist <- try(get(codelist_name, envir = asNamespace("iotc.data.reference.codelists")), silent = TRUE)
