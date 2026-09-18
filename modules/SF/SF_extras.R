@@ -46,11 +46,12 @@ samples_by_size_bar_chart = function(max_categories, category, use_category_colo
   Mc = max(as.numeric(data$CLASS_LOW))
 
   return (
-    bar.value(
+    iotc.base.common.plots::bar.value(
       data,
       value = C_FISH_COUNT,
       time = C_CLASS_LOW,
-      category,
+      fill_by = category,
+      fill_by_codelist = get_codelist_for_term(category),
       max_categories,
       custom_colors,
       num_legend_rows =  2, #Number of legend rows
@@ -85,11 +86,12 @@ samples_by_size_bar_chart_relative = function(max_categories, category, use_cate
   Mc = max(as.numeric(data$CLASS_LOW))
 
   return (
-    bar.value.rel(
+    iotc.base.common.plots::bar.value.rel(
       data,
       value = C_FISH_COUNT,
       time = C_CLASS_LOW,
-      category,
+      fill_by = category,
+      fill_by_codelist = get_codelist_for_term(category),
       max_categories,
       custom_colors,
       num_legend_rows =  2, #Number of legend rows
@@ -121,10 +123,11 @@ samples_by_size_line_chart = function(max_categories, category, use_category_col
   data$CLASS_LOW = floor(data$CLASS_LOW / size_bin) * size_bin
 
   return (
-    line.value(data,
+    iotc.base.common.plots::line.value(data,
                value = C_FISH_COUNT,
                time = C_CLASS_LOW,
-               category,
+               color_by = category,
+               color_by_codelist = get_codelist_for_term(category),
                max_categories,
                custom_colors,
                num_legend_rows = 2,
@@ -194,10 +197,11 @@ samples_by_size_line_chart_rel = function(max_categories, category, use_category
   data$FISH_TOT = NULL
 
   return (
-    line.value(data,
+    iotc.base.common.plots::line.value(data,
                value = C_FISH_COUNT,
                time = C_CLASS_LOW,
-               category,
+               color_by = category,
+               color_by_codelist = get_codelist_for_term(category),
                max_categories,
                custom_colors,
                num_legend_rows = 2,

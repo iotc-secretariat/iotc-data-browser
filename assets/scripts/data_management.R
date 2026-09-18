@@ -119,20 +119,20 @@ filter_data_core = function(all_data,
   return (data_filtered)
 }
 
-get_codelist_for_term = function(base_name){
-  codelist_name <- switch(base_name,
-         "FISHERY" = "LEGACY_FISHERIES_IOTDB",
-         "IUCN_STATUS" = "LEGACY_IUCN_STATUS_IOTDB",
-         "SPECIES_WP" = "LEGACY_WORKING_PARTIES_IOTDB",
-         "SPECIES_CATEGORY" = "LEGACY_SPECIES_CATEGORIES_IOTDB",
-         "SPECIES" = "LEGACY_SPECIES_IOTDB",
-         "CATCH_UNIT" = "LEGACY_CATCH_UNITS",
-         "FATE" = "LEGACY_FATES",
-         "SCHOOL_TYPE" = "LEGACY_SCHOOL_TYPES",
-         "MEASURE_UNIT" = "LEGACY_MEASUREMENT_TYPES",
-         "RAISE" = "LEGACY_RAISINGS",
-         "SEX" = "SEX",
-         paste0("LEGACY_", base_name, "S_IOTDB")
+get_codelist_for_term = function(code_col){
+  codelist_name <- switch(code_col,
+         "FISHERY_CODE" = "LEGACY_FISHERIES_IOTDB",
+         "IUCN_STATUS_CODE" = "LEGACY_IUCN_STATUS_IOTDB",
+         "SPECIES_WP_CODE" = "LEGACY_WORKING_PARTIES_IOTDB",
+         "SPECIES_CATEGORY_CODE" = "LEGACY_SPECIES_CATEGORIES_IOTDB",
+         "SPECIES_CODE" = "LEGACY_SPECIES_IOTDB",
+         "CATCH_UNIT_CODE" = "LEGACY_CATCH_UNITS",
+         "FATE_CODE" = "LEGACY_FATES",
+         "SCHOOL_TYPE_CODE" = "LEGACY_SCHOOL_TYPES",
+         "MEASURE_UNIT_CODE" = "LEGACY_MEASUREMENT_TYPES",
+         "RAISE_CODE" = "LEGACY_RAISINGS",
+         "SEX_CODE" = "SEX",
+         paste0("LEGACY_", sub("_CODE$", "", code_col), "S_IOTDB")
   )
   codelist <- try(get(codelist_name, envir = asNamespace("iotc.data.reference.codelists")), silent = TRUE)
   if(is(codelist, "try-error")){
@@ -149,11 +149,11 @@ enrich_data_table_with_descriptions <- function(dt, code_selection = NULL){
   print(code_cols)
   
   for (code_col in code_cols) {
-    # Extract the base name
-    base_name <- sub("_CODE$", "", code_col)
+    
+    base_name = sub("_CODE$", "", code_col)
     
     # Construct codelist name
-    codelist <- get_codelist_for_term(base_name)
+    codelist <- get_codelist_for_term(code_col)
     
     if(is(codelist, "try-error")){
       next
