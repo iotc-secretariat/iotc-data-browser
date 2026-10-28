@@ -125,9 +125,16 @@ sf_std_server <- function(id, activated){
       req(!is.null(react_ref()))
       shiny::tagList(
         tags$head(includeHTML(("./www/google-analytics.html"))),
-        includeCSS("./www/css/common.css"),
-        includeCSS("./www/css/common.css"),
-        title = UI_window_title(react_source_dataset(), iotc.data.reference.datasets.SF.std::METADATA$STD.SF$LAST_UPDATE, react_ref()),
+        includeCSS("www/css/common.css"),
+        includeCSS("www/css/button.css"),
+        includeCSS("www/css/fao-home.min.css"),
+        includeCSS("www/css/fao-theme.min.css"),
+        includeCSS("www/css/fao-adds.css"),
+        #title = UI_window_title(react_source_dataset(), iotc.data.reference.datasets.SF.std::METADATA$STD.SF$LAST_UPDATE, react_ref()),
+        fluidRow(
+          column = 12,
+          fao_header("IOTC data browser")
+        ),
         UI_main(
           react_source_dataset(), iotc.data.reference.datasets.SF.std::METADATA$STD.SF$LAST_UPDATE, react_ref(), "success",
           fluidRow(
@@ -146,6 +153,11 @@ sf_std_server <- function(id, activated){
             )
           ),
           "#SF-STD"
+        ),
+        fluidRow(
+          column = 12,
+          app_footer(getAppId(), getAppVersion(), getAppDate()),
+          fao_footer()
         )
       )
     })

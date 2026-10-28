@@ -110,7 +110,14 @@ ce_ef_server <- function(id, activated){
         tags$head(includeHTML(("www/google-analytics.html"))),
         includeCSS("www/css/common.css"),
         includeCSS("www/css/button.css"),
-        title = UI_window_title(react_source_dataset(), iotc.data.reference.datasets.CE::METADATA$RAW.EF$LAST_UPDATE, react_ref()),
+        includeCSS("www/css/fao-home.min.css"),
+        includeCSS("www/css/fao-theme.min.css"),
+        includeCSS("www/css/fao-adds.css"),
+        #title = UI_window_title(react_source_dataset(), iotc.data.reference.datasets.CE::METADATA$RAW.EF$LAST_UPDATE, react_ref()),
+        fluidRow(
+          column = 12,
+          fao_header("IOTC data browser")
+        ),
         UI_main(
           react_source_dataset(), iotc.data.reference.datasets.CE::METADATA$RAW.EF$LAST_UPDATE, react_ref(), "info",
           fluidRow(
@@ -127,6 +134,11 @@ ce_ef_server <- function(id, activated){
             )
           ),
           "#CE-EF"
+        ),
+        fluidRow(
+          column = 12,
+          app_footer(getAppId(), getAppVersion(), getAppDate()),
+          fao_footer()
         )
       )
     })

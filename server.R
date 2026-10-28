@@ -38,9 +38,18 @@ server = function(input, output, session) {
     tagList(
       tags$head(includeHTML(("www/google-analytics.html"))),
       includeCSS("www/css/home.css"),
-      titlePanel(
-        windowTitle = "IOTC data browser - explore the content of IOTC datasets",
-        title = ""
+      includeCSS("www/css/fao-home.min.css"),
+      includeCSS("www/css/fao-theme.min.css"),
+      includeCSS("www/css/fao-adds.css"),
+      # titlePanel(
+      #   windowTitle = "IOTC data browser - explore the content of IOTC datasets",
+      #   title = ""
+      # ),
+      fluidRow(
+        column = 12,
+        tags$div(class = "container",
+          fao_header("IOTC data browser")
+        )
       ),
       fluidRow(
         column = 12,
@@ -234,6 +243,13 @@ server = function(input, output, session) {
                                    )
                           )
                  )
+        )
+      ),
+      fluidRow(
+        column = 12,
+        tags$div(class = "container",
+                 app_footer(getAppId(), getAppVersion(), getAppDate()),
+                 fao_footer()
         )
       )
     )
